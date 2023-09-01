@@ -7,17 +7,20 @@ type TButtonProps = {
   target?: "_self" | "_blank" | "_parent" | "_top";
   isLoading?: boolean;
   disabled?: boolean;
-  size?: "sm" | "md" | "lg";
-  color?: "default" | "blue" | "sky" | "dark" | "red";
+  size: "sm" | "md" | "lg";
+  color: "default" | "blue" | "sky" | "dark" | "red";
   fullWidth?: boolean;
+  icon?: ReactNode;
   children: ReactNode;
 };
 
+type TButtonContentProps = Pick<TButtonProps, "isLoading" | "icon" | "children">;
+
 const style = {
   default:
-    "relative inline-block rounded-lg inline-flex min-w-[80px] justify-center items-center text-white font-medium",
+    "relative inline-block rounded-lg inline-flex justify-center items-center text-white font-medium",
   size: {
-    sm: "px-3 h-9",
+    sm: "px-3 min-w-[80px] h-9",
     md: "w-[140px] h-10",
     lg: "min-w-[160px] px-3 h-10",
   },
@@ -38,28 +41,41 @@ const Spinner = () => {
   );
 };
 
+// buttonの中身
+const ButtonContent: FC<TButtonContentProps> = ({ isLoading, icon, children }) => {
+  return (
+    <span className={`${isLoading ? "opacity-0" : ""} ${icon ? "flex items-center gap-2" : ""}`}>
+      {icon && <span className="w-4">{icon}</span>}
+      <span className="pt-[1px] inline-block">{children}</span>
+    </span>
+  );
+};
+
 export const Button: FC<TButtonProps> = ({
   onClick,
   href,
   target = "_self",
   isLoading,
   disabled,
-  size = "md",
-  color = "default",
+  size,
+  color,
   fullWidth,
+  icon,
   children,
 }) => {
   const classes = useMemo(() => {
     return `${style.default} ${style.size[size]} ${style.colors[color]}  ${
       disabled ? "opacity-50 pointer-events-none" : ""
     } ${fullWidth ? "w-full" : ""} ${isLoading ? "pointer-events-none opacity-80" : ""}`;
-  }, [size, color, fullWidth, disabled]);
+  }, [size, color, fullWidth, disabled, isLoading]);
 
   if (href) {
     return (
       <Link href={href} target={target} className={classes}>
         {isLoading && <Spinner />}
-        <span className={`${isLoading ? "opacity-0" : ""}`}>{children}</span>
+        <ButtonContent isLoading={isLoading} icon={icon}>
+          {children}
+        </ButtonContent>
       </Link>
     );
   }
@@ -67,7 +83,9 @@ export const Button: FC<TButtonProps> = ({
   return (
     <button onClick={onClick ? onClick : undefined} disabled={disabled} className={classes}>
       {isLoading && <Spinner />}
-      <span className={`${isLoading ? "opacity-0" : ""}`}>{children}</span>
+      <ButtonContent isLoading={isLoading} icon={icon}>
+        {children}
+      </ButtonContent>
     </button>
   );
 };
