@@ -1,10 +1,6 @@
-import Link from "next/link";
-import React, { FC, ReactNode, useMemo } from "react";
+import { FC, ReactNode } from "react";
 
 type TButtonProps = {
-  onClick?: () => void;
-  href?: string;
-  target?: "_self" | "_blank" | "_parent" | "_top";
   isLoading?: boolean;
   disabled?: boolean;
   size: "sm" | "md" | "lg";
@@ -13,8 +9,6 @@ type TButtonProps = {
   icon?: ReactNode;
   children: ReactNode;
 };
-
-type TButtonContentProps = Pick<TButtonProps, "isLoading" | "icon" | "children">;
 
 const style = {
   default:
@@ -42,19 +36,8 @@ const Spinner = () => {
 };
 
 // buttonの中身
-const ButtonContent: FC<TButtonContentProps> = ({ isLoading, icon, children }) => {
-  return (
-    <span className={`${isLoading ? "opacity-0" : ""} ${icon ? "flex items-center gap-2" : ""}`}>
-      {icon && <span className="w-4">{icon}</span>}
-      <span className="pt-[1px] inline-block">{children}</span>
-    </span>
-  );
-};
 
 export const Button: FC<TButtonProps> = ({
-  onClick,
-  href,
-  target = "_self",
   isLoading,
   disabled,
   size,
@@ -63,29 +46,17 @@ export const Button: FC<TButtonProps> = ({
   icon,
   children,
 }) => {
-  const classes = useMemo(() => {
-    return `${style.default} ${style.size[size]} ${style.colors[color]}  ${
-      disabled ? "opacity-50 pointer-events-none" : ""
-    } ${fullWidth ? "w-full" : ""} ${isLoading ? "pointer-events-none opacity-80" : ""}`;
-  }, [size, color, fullWidth, disabled, isLoading]);
-
-  if (href) {
-    return (
-      <Link href={href} target={target} className={classes}>
-        {isLoading && <Spinner />}
-        <ButtonContent isLoading={isLoading} icon={icon}>
-          {children}
-        </ButtonContent>
-      </Link>
-    );
-  }
-
   return (
-    <button onClick={onClick ? onClick : undefined} disabled={disabled} className={classes}>
+    <span
+      className={`${style.default} ${style.size[size]} ${style.colors[color]}  ${
+        disabled ? "opacity-50 pointer-events-none" : ""
+      } ${fullWidth ? "w-full" : ""} ${isLoading ? "opacity-50 pointer-events-none" : ""}`}
+    >
       {isLoading && <Spinner />}
-      <ButtonContent isLoading={isLoading} icon={icon}>
-        {children}
-      </ButtonContent>
-    </button>
+      <span className={`${isLoading ? "opacity-0" : ""} ${icon ? "flex items-center gap-2" : ""}`}>
+        {icon && <span className="w-4">{icon}</span>}
+        <span className="pt-[1px] inline-block">{children}</span>
+      </span>
+    </span>
   );
 };
