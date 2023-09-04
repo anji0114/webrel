@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import { FC, ReactNode } from "react";
 
 type TButtonProps = {
@@ -27,14 +28,6 @@ const style = {
   },
 };
 
-const Spinner = () => {
-  return (
-    <span className="absolute left-1/2 top-[calc(50%_+_1px)] -translate-x-1/2 -translate-y-1/2  h-4 w-4">
-      <span className="inline-block w-full h-full animate-spin rounded-full border-2 border-white border-t-transparent"></span>
-    </span>
-  );
-};
-
 // buttonの中身
 
 export const Button: FC<TButtonProps> = ({
@@ -48,12 +41,20 @@ export const Button: FC<TButtonProps> = ({
 }) => {
   return (
     <span
-      className={`${style.default} ${style.size[size]} ${style.colors[color]}  ${
-        disabled ? "opacity-50 pointer-events-none" : ""
-      } ${fullWidth ? "w-full" : ""} ${isLoading ? "opacity-50 pointer-events-none" : ""}`}
+      className={clsx(
+        style.default,
+        style.size[size],
+        style.colors[color],
+        disabled || isLoading ? "opacity-50 pointer-events-none" : "",
+        fullWidth ? "w-full" : ""
+      )}
     >
-      {isLoading && <Spinner />}
-      <span className={`${isLoading ? "opacity-0" : ""} ${icon ? "flex items-center gap-2" : ""}`}>
+      {isLoading && (
+        <span className="absolute left-1/2 top-[calc(50%_+_1px)] -translate-x-1/2 -translate-y-1/2  h-4 w-4">
+          <span className="inline-block w-full h-full animate-spin rounded-full border-2 border-white border-t-transparent"></span>
+        </span>
+      )}
+      <span className={clsx(isLoading ? "opacity-0" : "", icon ? "flex items-center gap-2" : "")}>
         {icon && <span className="w-4">{icon}</span>}
         <span className="pt-[1px] inline-block">{children}</span>
       </span>
