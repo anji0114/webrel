@@ -1,15 +1,15 @@
-"use client";
+'use client';
+import { Button } from '@/components/elements/Button';
+import { TrashIcon } from '@heroicons/react/24/outline';
+import { type NextPage } from 'next';
+import Image from 'next/image';
+import Link from 'next/link';
 
-import { Button } from "@/components/elements/Button";
-import { TrashIcon } from "@heroicons/react/24/outline";
-import Image from "next/image";
-import Link from "next/link";
-
-export default function Home() {
+const Home: NextPage = () => {
   return (
     <div className="space-y-4 max-w-[800px] mx-auto py-10">
       <div className="space-x-4">
-        <Link href={"/"}>
+        <Link href="/">
           <Button color="default" size="md">
             ボタン
           </Button>
@@ -17,7 +17,7 @@ export default function Home() {
 
         <button
           onClick={() => {
-            alert("ok");
+            alert('ok');
           }}
         >
           <Button
@@ -35,4 +35,6 @@ export default function Home() {
       </div>
     </div>
   );
-}
+};
+
+export default Home;

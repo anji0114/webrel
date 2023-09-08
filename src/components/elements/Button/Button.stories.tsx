@@ -1,19 +1,19 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { Button } from ".";
-import { TrashIcon } from "@heroicons/react/24/outline";
+import type { Meta, StoryObj } from '@storybook/react';
+import { TrashIcon } from '@heroicons/react/24/outline';
+import { Button } from '.';
 
 const meta = {
-  title: "Element/Button",
+  title: 'Element/Button',
   component: Button,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {
     color: {
-      control: "text",
+      control: 'text',
     },
   },
   args: {
-    children: "Button",
-    size: "md",
+    children: 'Button',
+    size: 'md',
   },
 } satisfies Meta<typeof Button>;
 
@@ -22,29 +22,29 @@ type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   args: {
-    color: "default",
+    color: 'default',
   },
 };
 
 export const Icon: Story = {
   args: {
-    color: "red",
+    color: 'red',
     icon: <TrashIcon />,
   },
 };
 
 export const Disabled: Story = {
   args: {
-    color: "blue",
+    color: 'blue',
     disabled: true,
   },
 };
 
 export const Loading: Story = {
   args: {
-    children: "Button",
-    color: "dark",
-    size: "md",
+    children: 'Button',
+    color: 'dark',
+    size: 'md',
     isLoading: true,
   },
 };
