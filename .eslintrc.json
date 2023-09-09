@@ -6,6 +6,7 @@
     "plugin:import/warnings",
     "prettier"
   ],
+  "plugins": ["sort-keys-custom-order"],
   "parser": "@typescript-eslint/parser",
   "rules": {
     "import/order": [
@@ -15,6 +16,14 @@
           "order": "asc"
         }
       }
+    ],
+    "sort-keys-custom-order/object-keys": [
+      "error",
+      { "orderedKeys": ["id", "name", "title"] }
+    ],
+    "sort-keys-custom-order/type-keys": [
+      "error",
+      { "orderedKeys": ["id", "name", "title"] }
     ]
   }
 }
