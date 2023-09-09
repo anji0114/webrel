@@ -6,8 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "prettier": "prettier --write ."
+    "lint": "next lint --dir src",
+    "lint:fix": "yarn lint --fix",
+    "format": "prettier --write --ignore-path .gitignore './**/*.{js,jsx,ts,tsx,json}'"
   },
   "dependencies": {
     "@types/node": "20.5.7",
@@ -24,6 +25,10 @@
     "typescript": "5.2.2"
   },
   "devDependencies": {
-    "prettier": "3.0.3"
+    "@typescript-eslint/eslint-plugin": "^6.6.0",
+    "@typescript-eslint/parser": "^6.6.0",
+    "eslint-config-prettier": "^9.0.0",
+    "lint-staged": "^14.0.1",
+    "prettier": "^3.0.3"
   }
 }
