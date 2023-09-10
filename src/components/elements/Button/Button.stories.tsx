@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from '@storybook/react';
 import { TrashIcon } from '@heroicons/react/24/outline';
+import type { Meta, StoryObj } from '@storybook/react';
 import { Button } from '.';
 
 const meta = {
@@ -29,7 +29,7 @@ export const Primary: Story = {
 export const Icon: Story = {
   args: {
     color: 'red',
-    href: "/",
+    href: '/',
     icon: <TrashIcon />,
   },
 };

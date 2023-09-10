@@ -7,8 +7,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "lint:fix": "yarn lint --fix",
+    "format": "prettier --write --ignore-path .gitignore './**/*.{js,jsx,ts,tsx,json}'",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@heroicons/react": "^2.0.18",
@@ -35,7 +38,12 @@
     "@storybook/nextjs": "^7.4.0",
     "@storybook/react": "^7.4.0",
     "@storybook/testing-library": "^0.2.0",
+    "@typescript-eslint/eslint-plugin": "^6.6.0",
+    "@typescript-eslint/parser": "^6.6.0",
+    "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-storybook": "^0.6.13",
+    "husky": "^8.0.0",
+    "prettier": "^3.0.3",
     "storybook": "^7.4.0"
   }
 }
