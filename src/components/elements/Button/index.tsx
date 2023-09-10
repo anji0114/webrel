@@ -3,9 +3,9 @@ import Link from 'next/link';
 import {
   FC,
   ReactNode,
-  useMemo,
   HTMLAttributeAnchorTarget,
   MouseEvent,
+  memo,
 } from 'react';
 
 type TButtonProps = {
@@ -40,8 +40,40 @@ const style = {
 };
 
 // buttonの中身
+const ButtonContent: FC<
+  Pick<
+    TButtonProps,
+    'isLoading' | 'size' | 'color' | 'fullWidth' | 'icon' | 'children'
+  >
+> = ({ isLoading, size, color, fullWidth = false, icon, children }) => {
+  return (
+    <span
+      className={clsx(
+        style.default,
+        style.size[size],
+        style.colors[color],
+        fullWidth ? 'w-full' : '',
+      )}
+    >
+      {isLoading && (
+        <span className='absolute left-1/2 top-[calc(50%_+_1px)] -translate-x-1/2 -translate-y-1/2  h-4 w-4'>
+          <span className='inline-block w-full h-full animate-spin rounded-full border-2 border-white border-t-transparent' />
+        </span>
+      )}
+      <span
+        className={clsx(
+          isLoading ? 'opacity-0' : '',
+          icon ? 'flex items-center gap-2' : '',
+        )}
+      >
+        {icon && <span className='w-4'>{icon}</span>}
+        <span className='pt-[1px] inline-block'>{children}</span>
+      </span>
+    </span>
+  );
+};
 
-export const Button: FC<TButtonProps> = ({
+const ButtonComponent: FC<TButtonProps> = ({
   isLoading,
   disabled,
   size,
@@ -54,35 +86,6 @@ export const Button: FC<TButtonProps> = ({
   type = 'button',
   children,
 }) => {
-  const buttonContent = useMemo(
-    () => (
-      <span
-        className={clsx(
-          style.default,
-          style.size[size],
-          style.colors[color],
-          fullWidth ? 'w-full' : '',
-        )}
-      >
-        {isLoading && (
-          <span className='absolute left-1/2 top-[calc(50%_+_1px)] -translate-x-1/2 -translate-y-1/2  h-4 w-4'>
-            <span className='inline-block w-full h-full animate-spin rounded-full border-2 border-white border-t-transparent' />
-          </span>
-        )}
-        <span
-          className={clsx(
-            isLoading ? 'opacity-0' : '',
-            icon ? 'flex items-center gap-2' : '',
-          )}
-        >
-          {icon && <span className='w-4'>{icon}</span>}
-          <span className='pt-[1px] inline-block'>{children}</span>
-        </span>
-      </span>
-    ),
-    [size, color, icon, isLoading, fullWidth, children],
-  );
-
   if (href) {
     return (
       <Link
@@ -93,7 +96,15 @@ export const Button: FC<TButtonProps> = ({
         href={href}
         target={target}
       >
-        {buttonContent}
+        <ButtonContent
+          isLoading={isLoading}
+          size={size}
+          color={color}
+          fullWidth={fullWidth}
+          icon={icon}
+        >
+          {children}
+        </ButtonContent>
       </Link>
     );
   }
@@ -108,7 +119,17 @@ export const Button: FC<TButtonProps> = ({
       onClick={onClick ? (event) => onClick(event) : undefined}
       disabled={disabled}
     >
-      {buttonContent}
+      <ButtonContent
+        isLoading={isLoading}
+        size={size}
+        color={color}
+        fullWidth={fullWidth}
+        icon={icon}
+      >
+        {children}
+      </ButtonContent>
     </button>
   );
 };
+
+export const Button = memo(ButtonComponent);
