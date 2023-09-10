@@ -29,6 +29,7 @@ export const Primary: Story = {
 export const Icon: Story = {
   args: {
     color: 'red',
+    href: "/",
     icon: <TrashIcon />,
   },
 };
