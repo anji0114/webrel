@@ -14,7 +14,11 @@
     "prepare": "husky install"
   },
   "dependencies": {
+
+    "@prisma/client": "5.2.0",
+
     "@heroicons/react": "^2.0.18",
+
     "@types/node": "20.5.7",
     "@types/react": "18.2.21",
     "@types/react-dom": "18.2.7",
@@ -44,6 +48,10 @@
     "eslint-plugin-storybook": "^0.6.13",
     "husky": "^8.0.0",
     "prettier": "^3.0.3",
+
+    "prisma": "^5.2.0",
+
     "storybook": "^7.4.0"
+
   }
 }
