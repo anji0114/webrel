@@ -9,6 +9,14 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontSize: {
+        sm: '0.75rem',
+        base: '0.875rem',
+        lg: '1rem',
+        xl: '1.125rem',
+        '2xl': '1.25rem',
+        '3xl': '1.375rem',
+      },
       colors: {
         accent: {
           light: '#1885DC',

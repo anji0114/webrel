@@ -14,14 +14,14 @@ const page = () => {
 
   return (
     <AuthContent
-      title='Webrelにログインする'
-      type='login'
+      title='Webrelに登録する'
+      type='register'
       buttons={[
         <AuthButton key='github' onClick={authGithub} provider='github'>
-          Githubでログインする
+          Githubで登録する
         </AuthButton>,
         <AuthButton key='google' onClick={authGoogle} provider='google'>
-          Googleでログインする
+          Googleで登録する
         </AuthButton>,
       ]}
     />

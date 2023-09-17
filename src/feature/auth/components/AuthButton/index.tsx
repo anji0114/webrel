@@ -4,7 +4,6 @@ import { FC, MouseEvent, ReactNode } from 'react';
 
 type TAuthButtonProps = {
   provider: 'google' | 'github';
-  icon: ReactNode;
   onClick: (event: MouseEvent<HTMLButtonElement>) => void;
   children: ReactNode;
 };
@@ -17,11 +16,11 @@ export const AuthButton: FC<TAuthButtonProps> = ({
   return (
     <button
       className={clsx(
-        'h-10 w-full flex items-center justify-center text-sm font-bold rounded-lg gap-3',
+        'h-10 w-full flex items-center justify-center text-sm font-bold rounded-lg gap-3 border',
         provider === 'google'
-          ? 'bg-white border border-gray-500 hover:bg-gray-200'
+          ? 'bg-white border-gray-500 hover:bg-gray-200'
           : provider === 'github'
-          ? 'bg-gray-700 text-white hover:bg-gray-800'
+          ? 'bg-gray-700 border-transparent text-white hover:bg-gray-800'
           : '',
       )}
       onClick={onClick}
