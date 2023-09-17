@@ -4,27 +4,32 @@ const config: Config = {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/feature/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     extend: {
       colors: {
-        blue: {
-          light: '#4DB5F6',
-          DEFAULT: '#1B5D87',
-          dark: '#31414B',
+        accent: {
+          light: '#1885DC',
+          DEFAULT: '#3D89B8',
+          dark: '#13557E',
         },
-        black: {
-          DEFAULT: '#000000',
-          100: '#111111',
-          200: '#151515',
-          300: '#1c1c1c',
-          400: '#252525',
-          500: '#2f2f2f',
-          600: '#333333',
-          700: '#444444',
-          800: '#666666',
-          900: '8888888',
+        danger: {
+          light: '#DF6165',
+          DEFAULT: '#DA2F35',
+          dark: '#B10707',
+        },
+        gray: {
+          100: '#FAFAFC',
+          200: '#F6F8FA',
+          300: '#E3E8EC',
+          400: '#d0d7de',
+          500: '#A9BACB',
+          600: '#656D76',
+          700: '#404A58',
+          800: '#292F37',
+          900: '#1F2328',
         },
       },
     },

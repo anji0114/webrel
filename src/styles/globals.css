@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 body {
-  color: #fff;
+  color: #1f2328;
   font-size: 14px;
   line-height: 1.6;
-  background-color: #1c1c1c;
+  background-color: #fff;
 }

@@ -11,7 +11,7 @@ import {
 type TButtonProps = {
   disabled?: boolean;
   isLoading?: boolean;
-  color: 'default' | 'blue' | 'sky' | 'dark' | 'red';
+  color: 'dark' | 'blue' | 'red' | 'gray';
   size: 'sm' | 'md' | 'lg';
   fullWidth?: boolean;
   href?: string;
@@ -31,11 +31,10 @@ const style = {
     lg: 'min-w-[160px] px-3 h-10',
   },
   colors: {
-    default: 'bg-blue-dark hover:bg-blue',
-    blue: 'bg-blue hover:bg-blue-light',
-    sky: 'bg-blue-light hover:bg-blue-dark',
-    dark: 'border border-black-700 bg-black-400 hover:bg-black-700',
-    red: 'bg-red-700 hover:bg-red-500',
+    dark: 'bg-gray-800 hover:bg-gray-700',
+    blue: 'bg-accent hover:bg-accent-dark',
+    red: 'bg-danger hover:bg-danger-dark',
+    gray: 'text-gray-900 bg-gray-200 border border-gray-300 hover:bg-gray-300 hover:border-gray-400',
   },
 };
 
