@@ -12,7 +12,7 @@ export const NonLoginHeader: FC<TNonLoginHeaderProps> = ({ bgTransparent }) => {
   return (
     <header
       className={clsx(
-        'fixed top-0 left-0 w-full h-[70px]',
+        'fixed top-0 left-0 w-full h-[70px] z-[100]',
         !bgTransparent
           ? 'border-b border-gray-400 bg-white bg-opacity-40 backdrop-blur-sm'
           : '',
