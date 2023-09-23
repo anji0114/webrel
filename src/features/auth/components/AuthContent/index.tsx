@@ -18,10 +18,10 @@ export const AuthContent: FC<TAuthContentProps> = ({ title, type }) => {
   const authGithub = async () => {
     setGithubLoading(true);
     try {
-      // await signIn('github');
+      await signIn('github');
     } catch (error) {
     } finally {
-      // setGithubLoading(false);
+      setGithubLoading(false);
     }
   };
 
@@ -30,7 +30,6 @@ export const AuthContent: FC<TAuthContentProps> = ({ title, type }) => {
     try {
       await signIn('google');
     } catch (error) {
-      alert(error);
     } finally {
       setGoogleLoading(false);
     }
