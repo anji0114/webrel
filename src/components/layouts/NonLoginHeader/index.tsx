@@ -1,10 +1,23 @@
+import clsx from 'clsx';
 import Image from 'next/image';
 import Link from 'next/link';
+import { FC } from 'react';
 import { Button } from '@/components/elements/Button';
 
-export const AuthHeader = () => {
+type TNonLoginHeaderProps = {
+  bgTransparent?: boolean;
+};
+
+export const NonLoginHeader: FC<TNonLoginHeaderProps> = ({ bgTransparent }) => {
   return (
-    <header className='fixed top-0 left-0 w-full h-[70px] border-b border-gray-400 bg-white bg-opacity-40 backdrop-blur-sm'>
+    <header
+      className={clsx(
+        'fixed top-0 left-0 w-full h-[70px] z-[100]',
+        !bgTransparent
+          ? 'border-b border-gray-400 bg-white bg-opacity-40 backdrop-blur-sm'
+          : '',
+      )}
+    >
       <div className='px-5 flex items-center justify-between w-full h-full md:px-8'>
         <Link className='block w-20 h-[22px] hover:opacity-70' href='/'>
           <Image
