@@ -22,7 +22,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   args: {
-    color: 'default',
+    color: 'dark',
   },
 };
 
