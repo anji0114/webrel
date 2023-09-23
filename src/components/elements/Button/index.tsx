@@ -11,7 +11,7 @@ import {
 type TButtonProps = {
   disabled?: boolean;
   isLoading?: boolean;
-  color: 'default' | 'blue' | 'sky' | 'dark' | 'red';
+  color: 'dark' | 'blue' | 'red' | 'gray';
   size: 'sm' | 'md' | 'lg';
   fullWidth?: boolean;
   href?: string;
@@ -24,18 +24,17 @@ type TButtonProps = {
 
 const style = {
   default:
-    'relative inline-block rounded-lg inline-flex justify-center items-center text-white font-medium',
+    'relative inline-block rounded-lg inline-flex justify-center items-center font-medium',
   size: {
-    sm: 'px-3 min-w-[80px] h-9',
+    sm: 'px-4 min-w-[80px] h-8 text-sm',
     md: 'w-[140px] h-10',
     lg: 'min-w-[160px] px-3 h-10',
   },
   colors: {
-    default: 'bg-blue-dark hover:bg-blue',
-    blue: 'bg-blue hover:bg-blue-light',
-    sky: 'bg-blue-light hover:bg-blue-dark',
-    dark: 'border border-black-700 bg-black-400 hover:bg-black-700',
-    red: 'bg-red-700 hover:bg-red-500',
+    dark: 'text-white bg-gray-800 hover:bg-gray-700',
+    blue: 'text-white bg-accent hover:bg-accent-dark',
+    red: 'text-white bg-danger hover:bg-danger-dark',
+    gray: 'text-gray-900 bg-gray-200 border border-gray-300 hover:bg-gray-300 hover:border-gray-400',
   },
 };
 
@@ -67,7 +66,7 @@ const ButtonContent: FC<
         )}
       >
         {icon && <span className='w-4'>{icon}</span>}
-        <span className='pt-[1px] inline-block'>{children}</span>
+        <span className='inline-block'>{children}</span>
       </span>
     </span>
   );
