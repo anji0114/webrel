@@ -1,11 +1,15 @@
+// import { useRouter } from 'next/router';
 import React, { FC, ReactNode } from 'react';
 import { AuthHeader } from '@/app/(auth)/header';
+// import { getAuthSession } from '@/libs/auth';
 
 type TAuthLayoutProps = {
   children: ReactNode;
 };
 
-const AuthLayout: FC<TAuthLayoutProps> = ({ children }) => {
+const AuthLayout: FC<TAuthLayoutProps> = async ({ children }) => {
+  // const session = await getAuthSession();
+
   return (
     <div>
       <AuthHeader />
