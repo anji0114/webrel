@@ -18,7 +18,7 @@ export const Avatar: FC<TAvatarProps> = ({
   className,
 }) => {
   return (
-    <div className={clsx('rounded-full', size, className)}>
+    <span className={clsx('rounded-full', size, className)}>
       <Image
         className='rounded-full w-full h-full object-cover'
         src={src ? src : ''}
@@ -26,6 +26,6 @@ export const Avatar: FC<TAvatarProps> = ({
         width={sizeNumber}
         height={sizeNumber}
       />
-    </div>
+    </span>
   );
 };

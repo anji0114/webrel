@@ -40,7 +40,9 @@ export const DashboardHeader: FC<TDashboardHeaderProps> = async ({
         >
           {breadCrumb && <div className='hidden md:block'>{breadCrumb}</div>}
           <div className='ml-auto'>
-            <DashboardNav user={session?.user} />
+            <div className='h-10 w-10'>
+              {session?.user && <DashboardNav user={session.user} />}
+            </div>
           </div>
         </div>
       </div>
