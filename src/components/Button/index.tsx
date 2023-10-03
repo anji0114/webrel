@@ -19,6 +19,7 @@ type TButtonProps = {
   target?: HTMLAttributeAnchorTarget;
   onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
   type?: 'button' | 'submit' | 'reset';
+  variable?: boolean;
   children: ReactNode;
 };
 
@@ -26,10 +27,11 @@ const style = {
   default:
     'relative inline-block rounded-lg inline-flex justify-center items-center font-medium',
   size: {
-    sm: 'px-4 min-w-[80px] h-8 text-sm',
+    sm: 'px-4 min-w-[80px] h-9 text-sm',
     md: 'w-[140px] h-10',
     lg: 'min-w-[160px] px-3 h-10',
   },
+  variable: 'w-auto px-3',
   colors: {
     dark: 'text-white bg-gray-800 hover:bg-gray-700',
     blue: 'text-white bg-accent hover:bg-accent-dark',
@@ -40,18 +42,16 @@ const style = {
 
 // buttonの中身
 const ButtonContent: FC<
-  Pick<
-    TButtonProps,
-    'isLoading' | 'size' | 'color' | 'fullWidth' | 'icon' | 'children'
-  >
-> = ({ isLoading, size, color, fullWidth = false, icon, children }) => {
+  Omit<TButtonProps, 'onClick' | 'target' | 'disabled' | 'href' | 'type'>
+> = ({ isLoading, size, color, fullWidth, icon, variable, children }) => {
   return (
     <span
       className={clsx(
         style.default,
         style.size[size],
         style.colors[color],
-        fullWidth ? 'w-full' : '',
+        { ['w-full']: fullWidth },
+        { [style.variable]: variable },
       )}
     >
       {isLoading && (
@@ -83,6 +83,7 @@ const ButtonComponent: FC<TButtonProps> = ({
   target,
   onClick,
   type = 'button',
+  variable = false,
   children,
 }) => {
   if (href) {
@@ -101,6 +102,7 @@ const ButtonComponent: FC<TButtonProps> = ({
           color={color}
           fullWidth={fullWidth}
           icon={icon}
+          variable={variable}
         >
           {children}
         </ButtonContent>
@@ -124,6 +126,7 @@ const ButtonComponent: FC<TButtonProps> = ({
         color={color}
         fullWidth={fullWidth}
         icon={icon}
+        variable={variable}
       >
         {children}
       </ButtonContent>

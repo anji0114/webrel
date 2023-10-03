@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FC } from 'react';
-import { Button } from '@/components/elements/Button';
+import { Button } from '@/components/Button';
 
 type TNonLoginHeaderProps = {
   bgTransparent?: boolean;
@@ -19,12 +19,12 @@ export const NonLoginHeader: FC<TNonLoginHeaderProps> = ({ bgTransparent }) => {
       )}
     >
       <div className='px-5 flex items-center justify-between w-full h-full md:px-8'>
-        <Link className='block w-20 h-[22px] hover:opacity-70' href='/'>
+        <Link className='block w-[90] h-6 hover:opacity-70' href='/'>
           <Image
             src='/images/logo/logo-main.svg'
-            alt='webrel'
-            width={80}
-            height={22}
+            alt='Webrel'
+            width={90}
+            height={24}
           />
         </Link>
         <div className='flex gap-4'>
