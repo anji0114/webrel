@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { DashboardProject, TDashboardProject } from '../DashboardProject';
+import { DashboardProject, TDashboardProject } from '@/features/dashboard/components/DashboardProject';
 
 type TDashboardProjects = {
   title: string;

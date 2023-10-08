@@ -1,9 +1,9 @@
 'use client';
 
 import { FC } from 'react';
-import { TDashboardProject } from '../DashboardProject';
-import { DashboardProjects } from '../DashboardProjects';
-import { Button } from '@/components/Button';
+import { Button } from '@/components/elements/Button';
+import { TDashboardProject } from '@/features/dashboard/components/DashboardProject';
+import { DashboardProjects } from '@/features/dashboard/components/DashboardProjects';
 
 const PROJECTS: TDashboardProject[] = [
   {
