@@ -2,7 +2,7 @@ import { ArrowPathIcon } from '@heroicons/react/20/solid';
 import clsx from 'clsx';
 import Link from 'next/link';
 import { FC } from 'react';
-import { Card } from '@/components/Card';
+import { Card } from '@/components/elements/Card';
 
 export type TDashboardProject = {
   id: string;

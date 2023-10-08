@@ -1,10 +1,9 @@
 'use client';
 
-import { signOut } from 'next-auth/react';
 import { FC } from 'react';
-import { TDashboardProject } from '../DashboardProject';
-import { DashboardProjects } from '../DashboardProjects';
-import { Button } from '@/components/Button';
+import { Button } from '@/components/elements/Button';
+import { TDashboardProject } from '@/features/dashboard/components/DashboardProject';
+import { DashboardProjects } from '@/features/dashboard/components/DashboardProjects';
 
 const PROJECTS: TDashboardProject[] = [
   {
@@ -39,7 +38,7 @@ const PROJECTS: TDashboardProject[] = [
 export const DashboardContent: FC = () => {
   return (
     <div>
-      <Button size='sm' onClick={() => signOut()} variable color='dark'>
+      <Button size='sm' onClick={() => {}} variable color='dark'>
         新規プロジェクト
       </Button>
       <div className='mt-6'>

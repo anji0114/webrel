@@ -10,7 +10,7 @@ import Link from 'next/link';
 import { User } from 'next-auth';
 import { signOut } from 'next-auth/react';
 import { FC } from 'react';
-import { Avatar } from '@/components/Avatar';
+import { Avatar } from '@/components/elements/Avatar';
 
 type TDashboardNavProps = {
   user: User;

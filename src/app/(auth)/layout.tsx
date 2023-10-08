@@ -1,5 +1,5 @@
 import React, { FC, ReactNode } from 'react';
-import { NonLoginHeader } from '@/components/NonLoginHeader';
+import { NonLoginHeader } from '@/components/layouts/NonLoginHeader';
 
 type TAuthLayoutProps = {
   children: ReactNode;
