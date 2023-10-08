@@ -49,6 +49,7 @@ model User {
 
   accounts Account[]
   sessions Session[]
+  projects Project[]
 }
 
 model VerificationToken {
@@ -59,4 +60,10 @@ model VerificationToken {
   @@unique([identifier, token])
 }
 
-
+model Project {
+  id          String @id @default(cuid())
+  name        String
+  description String
+  ownerId     String
+  owner       User   @relation(fields: [ownerId], references: [id])
+}
