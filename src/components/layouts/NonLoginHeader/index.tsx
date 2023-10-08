@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FC } from 'react';
-import { Button } from '@/components/Button';
+import { Button } from '@/components/elements/Button';
 
 type TNonLoginHeaderProps = {
   bgTransparent?: boolean;
