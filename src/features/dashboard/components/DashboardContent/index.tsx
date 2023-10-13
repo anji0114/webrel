@@ -1,51 +1,61 @@
 'use client';
-
-import { FC } from 'react';
+import { FC, useState } from 'react';
+import { ProjectCreateModal } from '@/components/common/ProjectCreateModal.tsx';
 import { Button } from '@/components/elements/Button';
-import { TDashboardProject } from '@/features/dashboard/components/DashboardProject';
 import { DashboardProjects } from '@/features/dashboard/components/DashboardProjects';
-
-const PROJECTS: TDashboardProject[] = [
-  {
-    id: '1',
-    title: 'Webrel',
-    description:
-      '🎨 全体的にリファクタリングをしました。次の作業は機能実装をしていこうと思います',
-    updatedAt: '2023.01.13',
-  },
-  {
-    id: '2',
-    title: 'GitFiles',
-    description: 'GitHubでfileごとに管理するアプリです。',
-    updatedAt: '2022.01.11',
-  },
-  {
-    id: '3',
-    title: 'GahterNote',
-    description:
-      '🎨 全体的にリファクタリングをしました。次の作業は機能実装をしていこうと思いました。あと開業のチェック',
-    updatedAt: '2022.01.11',
-  },
-  {
-    id: '4',
-    title: 'GahterNote',
-    description:
-      '🎨 全体的にリファクタリングをしました。次の作業は機能実装をしていこうと思いました。あと開業のチェック',
-    updatedAt: '2022.01.11',
-  },
-];
+import { useProjectList } from '@/services/projectApi';
 
 export const DashboardContent: FC = () => {
+  const [modalOpen, setModalOpen] = useState(false);
+  const {
+    data: projects,
+    isLoading: projectsLoading,
+    error: projectsError,
+  } = useProjectList();
+
+  const onCancel = () => {
+    setModalOpen(false);
+  };
+
   return (
-    <div>
-      <Button size='sm' onClick={() => {}} variable color='dark'>
+    <>
+      <Button
+        size='sm'
+        variable
+        color='dark'
+        onClick={() => {
+          setModalOpen(true);
+        }}
+      >
         新規プロジェクト
       </Button>
+
       <div className='mt-6'>
-        <DashboardProjects title='ANJI TANAKA' projects={PROJECTS} />
+        <div>
+          <h2 className='text-xl font-bold leading-none'>ANJI TANAKA</h2>
+          <div className='mt-8'>
+            <DashboardProjects
+              projects={projects}
+              isLoading={projectsLoading}
+              isError={projectsError}
+              modalOpen={() => {
+                setModalOpen(true);
+              }}
+            />
+          </div>
+        </div>
         <hr className='border-t border-gray-400 -mx-8 my-10' />
-        <DashboardProjects title='参加中のプロジェクト' projects={PROJECTS} />
+        <div>
+          <h2 className='text-xl font-bold leading-none'>
+            参加中のプロジェクト
+          </h2>
+          <div className='mt-8'>
+            <DashboardProjects projects={undefined} isJoin />
+          </div>
+        </div>
       </div>
-    </div>
+
+      <ProjectCreateModal open={modalOpen} onCancel={onCancel} />
+    </>
   );
 };
