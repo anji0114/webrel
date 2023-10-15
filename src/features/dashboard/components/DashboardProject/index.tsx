@@ -34,7 +34,7 @@ export const DashboardProject: FC<TDashboardProjectProps> = ({
       </p>
       <Link
         className='absolute top-0 left-0 w-full h-full'
-        href={`/${id}`}
+        href={`/project/${id}`}
       ></Link>
     </Card>
   );
