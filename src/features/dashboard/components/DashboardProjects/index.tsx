@@ -1,3 +1,4 @@
+import { AxiosError } from 'axios';
 import { FC } from 'react';
 import { Button } from '@/components/elements/Button';
 import { DashboardProject } from '@/features/dashboard/components/DashboardProject';
@@ -10,8 +11,7 @@ type TDashboardProjectsProps = {
   projects: TDashboardProject[] | undefined;
   modalOpen?: () => void;
   isLoading?: boolean;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  isError?: any;
+  isError: AxiosError | null;
   isJoin?: boolean;
 };
 

@@ -1,10 +1,11 @@
-import { useMutation, useQuery } from '@tanstack/react-query';
-import axios from 'axios';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import axios, { AxiosError } from 'axios';
+import { useRouter } from 'next/navigation';
 import { QUERY_KEYS } from '@/constants/queryKey';
 import { TApiResponse } from '@/types/api';
 import { TProject, TProjectPayload } from '@/types/project';
 
-export const fetchProjectListApi = async (): Promise<TProject[]> => {
+const fetchProjectListApi = async (): Promise<TProject[]> => {
   try {
     const response =
       await axios.get<TApiResponse<TProject[]>>(`/api/projects/`);
@@ -14,9 +15,12 @@ export const fetchProjectListApi = async (): Promise<TProject[]> => {
   }
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const useProjectList = () => {
-  const { data, isLoading, error } = useQuery<TProject[]>({
+  const {
+    data: projects,
+    isLoading: projectsLoading,
+    error: projectsError,
+  } = useQuery<TProject[], AxiosError>({
     queryKey: [QUERY_KEYS.PROJECT.FETCH_PROJECTS],
     queryFn: async () => {
       return fetchProjectListApi();
@@ -24,13 +28,13 @@ export const useProjectList = () => {
   });
 
   return {
-    data,
-    isLoading,
-    error,
+    projects,
+    projectsLoading,
+    projectsError,
   };
 };
 
-export const createProjectApi = async (
+const createProjectApi = async (
   payload: TProjectPayload,
 ): Promise<TProject> => {
   const response = await axios.post<TApiResponse<TProject>>(
@@ -41,12 +45,25 @@ export const createProjectApi = async (
 };
 
 export const useCreateProject = () => {
-  const { mutate, isLoading, error } = useMutation({
+  const queryClient = useQueryClient();
+  const router = useRouter();
+
+  const {
+    mutate: createProject,
+    isLoading,
+    error,
+  } = useMutation({
     mutationFn: async (payload: TProjectPayload) => {
       return createProjectApi(payload);
     },
-    onSuccess: () => {},
+    onSuccess: (data) => {
+      queryClient.invalidateQueries([QUERY_KEYS.PROJECT.FETCH_PROJECTS]);
+      router.push(`/project/${data.id}`);
+    },
+    onError: () => {
+      console.log('失敗');
+    },
   });
 
-  return [mutate, isLoading, error];
+  return { createProject, isLoading, error };
 };
