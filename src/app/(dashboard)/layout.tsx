@@ -1,6 +1,6 @@
 import React, { FC, ReactNode } from 'react';
-import { DashboardAside } from '@/components/layouts/DashboardAside';
-import { DashboardHeader } from '@/components/layouts/DashboardHeader';
+import { DashboardAside } from '@/app/(dashboard)/components/DashboardAside';
+import { DashboardHeader } from '@/app/(dashboard)/components/DashboardHeader';
 
 type TDashboardLayoutProps = {
   children: ReactNode;
