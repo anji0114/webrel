@@ -11,3 +11,9 @@ body {
   background-color: #fff;
   font-family: 'Noto Sans JP', sans-serif;
 }
+
+select {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}

@@ -1,7 +1,9 @@
 'use client';
 
 import React, { FC } from 'react';
-import { useProject } from '../../services/featchProjectApi';
+import { ProjectSort } from '@/features/project/components/ProjectSort';
+import { ProjectUrls } from '@/features/project/components/ProjectUrls';
+import { useProject } from '@/features/project/services/fetchProjectApi';
 
 type TProjectMainProps = {
   id: string;
@@ -20,9 +22,12 @@ export const ProjectMain: FC<TProjectMainProps> = ({ id }) => {
         {data?.name}
       </h1>
 
-      <div className='mt-4'>サーチエリア</div>
-
-      <div className='mt-10'>url</div>
+      <div className='mt-4'>
+        <ProjectSort />
+        <div className='mt-10'>
+          <ProjectUrls />
+        </div>
+      </div>
     </div>
   );
 };
