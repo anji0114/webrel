@@ -3,7 +3,7 @@ import { FC, useState } from 'react';
 import { Button } from '@/components/elements/Button';
 import { DashboardProjects } from '@/features/dashboard/components/DashboardProjects';
 import { ProjectCreateModal } from '@/features/dashboard/components/ProjectCreateModal.tsx';
-import { useProjectList } from '@/services/projectApi';
+import { useProjectList } from '@/features/dashboard/hooks/useProjects';
 
 export const DashboardContent: FC = () => {
   const [modalOpen, setModalOpen] = useState(false);
