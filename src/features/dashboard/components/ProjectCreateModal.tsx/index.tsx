@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import { Input } from '@/components/elements/Input';
 import { Modal, TModalProps } from '@/components/elements/Modal';
 import { Textarea } from '@/components/elements/Textarea';
-import { useCreateProject } from '@/services/projectApi';
+import { useCreateProject } from '@/features/dashboard/hooks/useCreateProject';
 
 type TProjectCreateModalProps = Omit<
   TModalProps,
