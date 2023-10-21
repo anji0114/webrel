@@ -3,18 +3,15 @@ import clsx from 'clsx';
 import Link from 'next/link';
 import { FC } from 'react';
 import { Card } from '@/components/elements/Card';
+import { TDashboardProject } from '@/features/dashboard/components/DashboardProjects';
 
-export type TDashboardProject = {
-  id: string;
-  title: string;
-  description: string;
-  updatedAt: string;
+export type TDashboardProjectProps = TDashboardProject & {
   className?: string;
 };
 
-export const DashboardProject: FC<TDashboardProject> = ({
+export const DashboardProject: FC<TDashboardProjectProps> = ({
   id,
-  title,
+  name,
   description,
   updatedAt,
   className,
@@ -27,12 +24,12 @@ export const DashboardProject: FC<TDashboardProject> = ({
         className,
       )}
     >
-      <h3 className='text-lg font-bold leading-tight'>{title}</h3>
+      <h3 className='text-lg font-bold leading-tight'>{name}</h3>
       <p className='mt-3 line-clamp-2 min-h-[calc(2em_*_1.625)]'>
         {description}
       </p>
       <p className='mt-3 flex gap-1 items-center text-gray-600 leading-none'>
-        <span className='text-sm'>{updatedAt}</span>{' '}
+        <span className='text-sm'>{updatedAt}</span>
         <ArrowPathIcon className='w-[14px] mt-[1px]' />
       </p>
       <Link

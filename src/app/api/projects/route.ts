@@ -9,7 +9,13 @@ export const GET = async () => {
     return new Response('Unauthorized', { status: 401 });
   }
 
-  return NextResponse.json({ name: 'GET', user: session.user });
+  const projects = await db.project.findMany({
+    where: {
+      ownerId: session.user.id,
+    },
+  });
+
+  return NextResponse.json({ message: 'success', data: projects });
 };
 
 export const POST = async (req: NextRequest) => {
@@ -29,5 +35,5 @@ export const POST = async (req: NextRequest) => {
     },
   });
 
-  return NextResponse.json({ data: project, status: 200 });
+  return NextResponse.json({ message: 'success', data: project });
 };
