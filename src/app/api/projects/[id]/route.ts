@@ -1,5 +1,4 @@
-import { NextApiRequest } from 'next';
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { getAuthSession } from '@/libs/auth';
 import { db } from '@/libs/db';
 
@@ -7,7 +6,7 @@ type TContext = {
   params: { id: string };
 };
 
-export const GET = async (request: NextApiRequest, context: TContext) => {
+export const GET = async (request: NextRequest, context: TContext) => {
   const session = await getAuthSession();
   if (!session?.user) {
     return new Response('Unauthorized', { status: 401 });
