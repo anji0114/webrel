@@ -3,10 +3,10 @@ import { nanoid } from 'nanoid';
 import { NextAuthOptions, getServerSession } from 'next-auth';
 import GithubProvider from 'next-auth/providers/github';
 import GoogleProvider from 'next-auth/providers/google';
-import prisma from '@/libs/prisma';
+import { db } from '@/libs/db';
 
 export const authOptions: NextAuthOptions = {
-  adapter: PrismaAdapter(prisma),
+  adapter: PrismaAdapter(db),
   session: { strategy: 'jwt' },
   pages: {
     signIn: '/login',
@@ -36,7 +36,7 @@ export const authOptions: NextAuthOptions = {
     },
 
     async jwt({ token, user }) {
-      const dbUser = await prisma.user.findFirst({
+      const dbUser = await db.user.findFirst({
         where: {
           email: token.email,
         },
@@ -48,7 +48,7 @@ export const authOptions: NextAuthOptions = {
       }
 
       if (!dbUser.accountId) {
-        await prisma.user.update({
+        await db.user.update({
           where: {
             id: dbUser.id,
           },
@@ -68,7 +68,7 @@ export const authOptions: NextAuthOptions = {
     },
 
     redirect() {
-      return '/example';
+      return '/dashboard';
     },
   },
 };

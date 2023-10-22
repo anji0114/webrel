@@ -7,7 +7,13 @@
 body {
   color: #1f2328;
   font-size: 14px;
-  line-height: 1.6;
+  line-height: 1.625;
   background-color: #fff;
   font-family: 'Noto Sans JP', sans-serif;
+}
+
+select {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
 }
