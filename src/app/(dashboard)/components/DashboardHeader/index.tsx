@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FC } from 'react';
-import { DashboardNav } from '@/components/layouts/DashboardNav';
+import { DashboardNav } from '@/app/(dashboard)/components/DashboardNav';
 import { getAuthSession } from '@/libs/auth';
 
 type TDashboardHeaderProps = {

@@ -1,6 +1,6 @@
 import '@/styles/globals.css';
 import type { Metadata } from 'next';
-import { QueryProvider } from '@/components/QueryProvider';
+import { QueryProvider } from '@/app/components/QueryProvider';
 
 export const metadata: Metadata = {
   title: 'webrel | Web制作・開発に特化したプロジェクト管理ルール',

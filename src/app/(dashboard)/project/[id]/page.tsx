@@ -1,7 +1,16 @@
 import React from 'react';
+import { ProjectMain } from '@/features/project/components/ProjectMain';
 
-const page = () => {
-  return <h1 className='text-2xl font-bold'>project detail page</h1>;
+interface PageProps {
+  params: {
+    id: string;
+  };
+}
+
+const page = async ({ params }: PageProps) => {
+  const { id } = params;
+
+  return <ProjectMain id={id} />;
 };
 
 export default page;

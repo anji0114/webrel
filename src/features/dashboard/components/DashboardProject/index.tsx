@@ -3,7 +3,9 @@ import clsx from 'clsx';
 import Link from 'next/link';
 import { FC } from 'react';
 import { Card } from '@/components/elements/Card';
+
 import { TDashboardProject } from '@/features/dashboard/components/DashboardProjects';
+import { useFormattedDate } from '@/hooks/useFormattedDate';
 
 export type TDashboardProjectProps = TDashboardProject & {
   className?: string;
@@ -16,6 +18,8 @@ export const DashboardProject: FC<TDashboardProjectProps> = ({
   updatedAt,
   className,
 }) => {
+  const formattedUpdatedAt = useFormattedDate(updatedAt);
+
   return (
     <Card
       as='li'
@@ -29,12 +33,12 @@ export const DashboardProject: FC<TDashboardProjectProps> = ({
         {description}
       </p>
       <p className='mt-3 flex gap-1 items-center text-gray-600 leading-none'>
-        <span className='text-sm'>{updatedAt}</span>
+        <span className='text-sm'>{formattedUpdatedAt}</span>
         <ArrowPathIcon className='w-[14px] mt-[1px]' />
       </p>
       <Link
         className='absolute top-0 left-0 w-full h-full'
-        href={`/${id}`}
+        href={`/project/${id}`}
       ></Link>
     </Card>
   );
