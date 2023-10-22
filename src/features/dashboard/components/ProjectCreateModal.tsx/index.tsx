@@ -1,29 +1,41 @@
 'use client';
 
+import { zodResolver } from '@hookform/resolvers/zod';
 import { FC } from 'react';
 import { useForm } from 'react-hook-form';
+import { z } from 'zod';
 import { Input } from '@/components/elements/Input';
 import { Modal, TModalProps } from '@/components/elements/Modal';
 import { Textarea } from '@/components/elements/Textarea';
 import { useCreateProject } from '@/features/dashboard/hooks/useCreateProject';
+import { PostValidator } from '@/libs/validators/project';
 
 type TProjectCreateModalProps = Omit<
   TModalProps,
   'isDisabled' | 'cancelText' | 'hideFooter' | 'children'
 >;
 
-type FormValues = {
-  name: string;
-  description?: string;
-};
+type FormData = z.infer<typeof PostValidator>;
 
 export const ProjectCreateModal: FC<TProjectCreateModalProps> = ({
   open,
   onCancel,
 }) => {
-  const { register, getValues, watch } = useForm<FormValues>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    watch,
+  } = useForm<FormData>({
+    resolver: zodResolver(PostValidator),
+  });
+
   const nameValue = watch('name');
   const { createProject, isLoading } = useCreateProject();
+  const onCreateProject = (data: FormData) => {
+    if (!nameValue) return;
+    createProject(data);
+  };
 
   return (
     <>
@@ -31,11 +43,7 @@ export const ProjectCreateModal: FC<TProjectCreateModalProps> = ({
         open={open}
         onCancel={onCancel}
         okText='作成する'
-        onOk={() => {
-          if (nameValue) {
-            createProject(getValues());
-          }
-        }}
+        onOk={handleSubmit(onCreateProject)}
         isDisabled={!nameValue}
         isLoading={isLoading}
       >
@@ -57,6 +65,11 @@ export const ProjectCreateModal: FC<TProjectCreateModalProps> = ({
                 required
                 {...register('name')}
               />
+              {errors.name && (
+                <p className='mt-1 text-danger text-sm'>
+                  {errors.name.message}
+                </p>
+              )}
             </dd>
           </dl>
           <dl className='md:flex'>
