@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button snapshot 1`] = `
+<button
+  className=""
+  type="button"
+>
+  <span
+    className="relative inline-block rounded-lg inline-flex justify-center items-center font-medium w-[140px] h-10 text-white bg-gray-800 hover:bg-gray-700"
+  >
+    <span
+      className=""
+    >
+      <span
+        className="inline-block"
+      >
+        Button
+      </span>
+    </span>
+  </span>
+</button>
+`;
