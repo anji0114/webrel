@@ -1,4 +1,5 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import renderer from 'react-test-renderer';
 import { Button } from '.';
 
@@ -23,14 +24,14 @@ describe('Button render', () => {
 });
 
 describe('Button interactions', () => {
-  test('calls onClick handler when clicked', () => {
+  test('calls onClick handler when clicked', async () => {
     const handleClick = jest.fn();
     render(
       <Button color='dark' size='md' onClick={handleClick}>
         Button
       </Button>,
     );
-    fireEvent.click(screen.getByRole('button'));
+    await userEvent.click(screen.getByRole('button'));
     expect(handleClick).toHaveBeenCalled();
   });
 
@@ -41,7 +42,7 @@ describe('Button interactions', () => {
         Button
       </Button>,
     );
-    fireEvent.click(screen.getByRole('button'));
+    userEvent.click(screen.getByRole('button'));
     expect(handleClick).not.toHaveBeenCalled();
   });
 });
