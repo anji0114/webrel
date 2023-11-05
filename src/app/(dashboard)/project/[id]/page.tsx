@@ -1,4 +1,3 @@
-import React from 'react';
 import { ProjectMain } from '@/features/project/components/ProjectMain';
 
 interface PageProps {

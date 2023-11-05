@@ -1,9 +1,7 @@
 import { PlusIcon } from '@heroicons/react/24/outline';
 import { useState } from 'react';
-import { PageCreateModal } from '../PageCreateModal';
-import { Button } from '@/components/elements/Button';
-import { Input } from '@/components/elements/Input';
-import { Select } from '@/components/elements/Select';
+import { Button, Input, Select } from '@/components/elements';
+import { PageCreateModal } from '@/features/project/components/PageCreateModal';
 
 export const ProjectSort = () => {
   const [modalOpen, setModalOpen] = useState(false);

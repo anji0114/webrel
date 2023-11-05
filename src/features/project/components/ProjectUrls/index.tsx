@@ -5,8 +5,8 @@ import {
 import clsx from 'clsx';
 import Link from 'next/link';
 import React from 'react';
-import { EXAMPLE_URLS } from '../../constants/moc';
-import { Avatar } from '@/components/elements/Avatar';
+import { Avatar } from '@/components/elements';
+import { EXAMPLE_URLS } from '@/features/project/constants/moc';
 
 export const ProjectUrls = () => {
   return (

@@ -1,10 +1,10 @@
 'use client';
 
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { LoadingArea } from '@/components/common/LoadingArea';
 import { ProjectSort } from '@/features/project/components/ProjectSort';
 import { ProjectUrls } from '@/features/project/components/ProjectUrls';
-import { useProject } from '@/features/project/services/fetchProjectApi';
+import { useProject } from '@/features/project/hooks/useProject';
 
 type TProjectMainProps = {
   id: string;

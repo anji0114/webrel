@@ -4,9 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { FC } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-import { Input } from '@/components/elements/Input';
-import { Modal, TModalProps } from '@/components/elements/Modal';
-import { Textarea } from '@/components/elements/Textarea';
+import { Input, Modal, TModalProps, Textarea } from '@/components/elements';
 import { useCreateProject } from '@/features/dashboard/hooks/useCreateProject';
 import { ProjectValidator } from '@/libs/validators/project';
 

@@ -1,4 +1,4 @@
-import { Card } from '@/components/elements/Card';
+import { Card } from '@/components/elements';
 
 export const SettingMember = () => {
   return (
