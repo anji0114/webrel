@@ -8,14 +8,14 @@ import { Input } from '@/components/elements/Input';
 import { Modal, TModalProps } from '@/components/elements/Modal';
 import { Textarea } from '@/components/elements/Textarea';
 import { useCreateProject } from '@/features/dashboard/hooks/useCreateProject';
-import { PostValidator } from '@/libs/validators/project';
+import { ProjectValidator } from '@/libs/validators/project';
 
 type TProjectCreateModalProps = Omit<
   TModalProps,
   'isDisabled' | 'cancelText' | 'hideFooter' | 'children'
 >;
 
-type FormData = z.infer<typeof PostValidator>;
+type FormData = z.infer<typeof ProjectValidator>;
 
 export const ProjectCreateModal: FC<TProjectCreateModalProps> = ({
   open,
@@ -27,7 +27,7 @@ export const ProjectCreateModal: FC<TProjectCreateModalProps> = ({
     formState: { errors },
     watch,
   } = useForm<FormData>({
-    resolver: zodResolver(PostValidator),
+    resolver: zodResolver(ProjectValidator),
   });
 
   const nameValue = watch('name');
