@@ -1,3 +1,5 @@
+'use client';
+
 import { PlusIcon } from '@heroicons/react/24/outline';
 import { useState } from 'react';
 import { Button, Input, Select } from '@/components/elements';

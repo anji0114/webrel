@@ -9,10 +9,6 @@ export const DashboardContent: FC = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const { projects, projectsLoading, projectsError } = useProjectList();
 
-  const onCancel = () => {
-    setModalOpen(false);
-  };
-
   return (
     <>
       <Button
@@ -50,7 +46,12 @@ export const DashboardContent: FC = () => {
           </div>
         </div>
       </div>
-      <ProjectCreateModal open={modalOpen} onCancel={onCancel} />
+      <ProjectCreateModal
+        open={modalOpen}
+        onCancel={() => {
+          setModalOpen(false);
+        }}
+      />
     </>
   );
 };
