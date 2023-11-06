@@ -1,16 +1,21 @@
 import { FC, ReactNode } from 'react';
+import { LoginHeader } from '@/app/components/Header/LoginHeader';
+import { ProjectAside } from '@/app/project/components/ProjectAside';
 
 type TProjectLayoutProps = {
   children: ReactNode;
-  params: {
-    id: string;
-  };
 };
 
-const ProjectLayout: FC<TProjectLayoutProps> = ({ children, params }) => {
-  console.log(params.id);
-
-  return <div>{children}</div>;
+const ProjectLayout: FC<TProjectLayoutProps> = ({ children }) => {
+  return (
+    <div className='bg-gray-200'>
+      <LoginHeader />
+      <div className='pt-[70px]  min-h-screen md:pl-[240px]'>
+        <ProjectAside />
+        <main className='p-8'>{children}</main>
+      </div>
+    </div>
+  );
 };
 
 export default ProjectLayout;

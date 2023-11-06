@@ -12,11 +12,11 @@ import { signOut } from 'next-auth/react';
 import { FC } from 'react';
 import { Avatar } from '@/components/elements';
 
-type TDashboardNavProps = {
+type THeaderNavProps = {
   user: User;
 };
 
-export const DashboardNav: FC<TDashboardNavProps> = ({ user }) => {
+export const HeaderNav: FC<THeaderNavProps> = ({ user }) => {
   return (
     <DropdownMenu.Root>
       <DropdownMenu.Trigger className='outline-none'>

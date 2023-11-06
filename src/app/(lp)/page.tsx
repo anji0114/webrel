@@ -1,7 +1,7 @@
 import { CursorArrowRaysIcon } from '@heroicons/react/24/outline';
 import { NextPage } from 'next';
 import Image from 'next/image';
-import { NonLoginHeader } from '@/app/components/NonLoginHeader';
+import { NonLoginHeader } from '@/app/components/Header/NonLoginHeader';
 import { Button } from '@/components/elements';
 
 const Home: NextPage = async () => {

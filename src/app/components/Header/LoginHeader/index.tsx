@@ -2,16 +2,14 @@ import clsx from 'clsx';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FC } from 'react';
-import { DashboardNav } from '@/app/(dashboard)/components/DashboardNav';
+import { HeaderNav } from '@/app/components/Header/HeaderNav';
 import { getAuthSession } from '@/libs/auth';
 
-type TDashboardHeaderProps = {
+type TLoginHeaderProps = {
   breadCrumb?: string;
 };
 
-export const DashboardHeader: FC<TDashboardHeaderProps> = async ({
-  breadCrumb,
-}) => {
+export const LoginHeader: FC<TLoginHeaderProps> = async ({ breadCrumb }) => {
   const session = await getAuthSession();
 
   return (
@@ -41,7 +39,7 @@ export const DashboardHeader: FC<TDashboardHeaderProps> = async ({
           {breadCrumb && <div className='hidden md:block'>{breadCrumb}</div>}
           <div className='ml-auto'>
             <div className='h-10 w-10'>
-              {session?.user && <DashboardNav user={session.user} />}
+              {session?.user && <HeaderNav user={session.user} />}
             </div>
           </div>
         </div>
