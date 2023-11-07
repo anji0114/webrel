@@ -1,12 +1,17 @@
 'use client';
 
 import { PlusIcon } from '@heroicons/react/24/outline';
-import { useState } from 'react';
+import { FC } from 'react';
 import { Button, Input, Select } from '@/components/elements';
 import { PageCreateModal } from '@/features/project/components/PageCreateModal';
+import { useVisible } from '@/hooks/useVisible';
 
-export const ProjectSort = () => {
-  const [modalOpen, setModalOpen] = useState(false);
+type TProjectSortProps = {
+  projectId: string;
+};
+
+export const ProjectSort: FC<TProjectSortProps> = ({ projectId }) => {
+  const { visible, setVisibleTrue, setVisibleFalse } = useVisible();
 
   return (
     <>
@@ -24,9 +29,7 @@ export const ProjectSort = () => {
         </div>
         <div className='ml-auto'>
           <Button
-            onClick={() => {
-              setModalOpen(true);
-            }}
+            onClick={setVisibleTrue}
             size='sm'
             color='blue'
             icon={<PlusIcon />}
@@ -36,10 +39,9 @@ export const ProjectSort = () => {
         </div>
       </div>
       <PageCreateModal
-        open={modalOpen}
-        onCancel={() => {
-          setModalOpen(false);
-        }}
+        projectId={projectId}
+        open={visible}
+        onCancel={setVisibleFalse}
       />
     </>
   );

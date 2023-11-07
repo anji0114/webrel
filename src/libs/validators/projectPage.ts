@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-export const ProjectValidator = z.object({
+export const PageValidator = z.object({
   name: z.string().min(1, { message: 'プロジェクト名は必須です' }).max(30, {
     message: 'プロジェクト名は30字以上入力することはできません',
   }),

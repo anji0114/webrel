@@ -24,7 +24,7 @@ export const ProjectMain: FC<TProjectMainProps> = ({ id }) => {
       </h1>
 
       <div className='mt-4'>
-        <ProjectSort />
+        <ProjectSort projectId={id} />
         <div className='mt-10'>
           <ProjectUrls />
         </div>

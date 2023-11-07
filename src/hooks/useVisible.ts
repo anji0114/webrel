@@ -7,8 +7,8 @@ type TUseVisibleReturn = {
   toggle: () => void;
 };
 
-export const useVisible = (defaultValue: boolean): TUseVisibleReturn => {
-  const [visible, setVisible] = useState(defaultValue);
+export const useVisible = (defaultValue?: boolean): TUseVisibleReturn => {
+  const [visible, setVisible] = useState(defaultValue ? defaultValue : false);
 
   const setVisibleTrue = () => setVisible(true);
   const setVisibleFalse = () => setVisible(false);
