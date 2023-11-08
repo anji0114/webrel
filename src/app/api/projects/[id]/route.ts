@@ -8,22 +8,29 @@ type TContext = {
 
 export const GET = async (request: NextRequest, context: TContext) => {
   const session = await getAuthSession();
+
   if (!session?.user) {
-    return new Response('Unauthorized', { status: 401 });
+    return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
   }
 
   const { id } = context.params;
   const project = await db.project.findUnique({
+    include: {
+      pages: true,
+    },
     where: {
       id: id,
     },
   });
 
-  if (project?.ownerId !== session.user.id) {
-    return new Response('Not Found', { status: 404 });
+  if (!project || project?.ownerId !== session.user.id) {
+    return NextResponse.json({ message: '404 - Not Found' }, { status: 404 });
   }
 
-  return NextResponse.json({ message: 'success', data: project });
+  return NextResponse.json(
+    { message: 'success', data: project },
+    { status: 200 },
+  );
 };
 
 export const DELETE = async (request: NextRequest, context: TContext) => {
