@@ -1,3 +1,4 @@
+import { NextPage } from 'next';
 import { SettingContent } from '@/features/projectSetting/components/SettingContent';
 
 interface PageProps {
@@ -6,10 +7,10 @@ interface PageProps {
   };
 }
 
-const page = async ({ params }: PageProps) => {
+const page: NextPage<PageProps> = async ({ params }) => {
   const { id } = params;
 
-  return <SettingContent id={id} />;
+  return <SettingContent projectId={id} />;
 };
 
 export default page;

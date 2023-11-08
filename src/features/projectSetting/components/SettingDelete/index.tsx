@@ -7,10 +7,10 @@ import { useDeleteProject } from '@/features/projectSetting/hooks/useDeleteProje
 import { useVisible } from '@/hooks/useVisible';
 
 type TSettingDeleteProps = {
-  id: string;
+  projectId: string;
 };
 
-export const SettingDelete: FC<TSettingDeleteProps> = ({ id }) => {
+export const SettingDelete: FC<TSettingDeleteProps> = ({ projectId }) => {
   const { deleteProject, isLoading } = useDeleteProject();
   const { visible, setVisibleTrue, setVisibleFalse } = useVisible(false);
 
@@ -36,7 +36,7 @@ export const SettingDelete: FC<TSettingDeleteProps> = ({ id }) => {
         onCancel={setVisibleFalse}
         isLoading={isLoading}
         onOk={() => {
-          deleteProject(id);
+          deleteProject(projectId);
         }}
       />
     </>

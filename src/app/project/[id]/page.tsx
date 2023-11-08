@@ -1,3 +1,4 @@
+import { NextPage } from 'next';
 import { ProjectMain } from '@/features/project/components/ProjectMain';
 
 interface PageProps {
@@ -6,10 +7,10 @@ interface PageProps {
   };
 }
 
-const page = async ({ params }: PageProps) => {
+const page: NextPage<PageProps> = async ({ params }) => {
   const { id } = params;
 
-  return <ProjectMain id={id} />;
+  return <ProjectMain projectId={id} />;
 };
 
 export default page;
