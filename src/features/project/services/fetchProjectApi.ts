@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { TApiResponse } from '@/types/api';
 import { TProject } from '@/types/project';
+import '@/libs/axios';
 
 export const fetchProjectApi = async (id: string): Promise<TProject> => {
   try {
