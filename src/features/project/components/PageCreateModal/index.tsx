@@ -23,16 +23,19 @@ export const PageCreateModal: FC<TPageCreateModalProps> = ({
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<TFormData>({
+    defaultValues: { name: '', path: '', level: 0, projectId: projectId },
     resolver: zodResolver(PageValidator),
   });
 
   const { createPage, isLoading } = useCreatePage(projectId);
 
   const onCreatePage = async (data: TFormData) => {
-    const newData = { ...data, level: 0 };
-    createPage(newData);
+    createPage(data);
+    reset();
+    if (onCancel) onCancel();
   };
 
   return (

@@ -3,8 +3,8 @@
 import { FC } from 'react';
 import { ErrorArea } from '@/components/common/ErrorArea';
 import { LoadingArea } from '@/components/common/LoadingArea';
+import { ProjectPages } from '@/features/project/components/ProjectPages';
 import { ProjectSort } from '@/features/project/components/ProjectSort';
-import { ProjectUrls } from '@/features/project/components/ProjectUrls';
 import { useProject } from '@/features/project/hooks/useProject';
 
 type TProjectMainProps = {
@@ -29,7 +29,7 @@ export const ProjectMain: FC<TProjectMainProps> = ({ projectId }) => {
       <div className='mt-4'>
         <ProjectSort projectId={projectId} />
         <div className='mt-10'>
-          <ProjectUrls />
+          <ProjectPages pages={data?.pages} />
         </div>
       </div>
     </div>

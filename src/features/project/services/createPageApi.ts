@@ -8,7 +8,7 @@ export const createPageApi = async (
 ): Promise<TPage> => {
   try {
     const response = await axios.post<TApiResponse<TPage>>(
-      `/api/projects/${projectId}/page`,
+      `/api/projects/${projectId}/pages`,
       payload,
     );
     return response.data.data;

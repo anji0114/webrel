@@ -20,7 +20,7 @@ export const HeaderNav: FC<THeaderNavProps> = ({ user }) => {
   return (
     <DropdownMenu.Root>
       <DropdownMenu.Trigger className='outline-none'>
-        <Avatar src={user.image ? user.image : '/images/dummy/image1.png'} />
+        <Avatar src={user.image} />
       </DropdownMenu.Trigger>
       <DropdownMenu.Portal>
         <DropdownMenu.Content

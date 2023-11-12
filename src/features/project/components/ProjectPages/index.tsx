@@ -4,11 +4,15 @@ import {
 } from '@heroicons/react/24/outline';
 import clsx from 'clsx';
 import Link from 'next/link';
-import React from 'react';
+import React, { FC } from 'react';
 import { Avatar } from '@/components/elements';
-import { EXAMPLE_URLS } from '@/features/project/constants/moc';
+import { TProjectPage } from '@/types/project';
 
-export const ProjectUrls = () => {
+type TProjectPagesProps = {
+  pages: TProjectPage[] | undefined;
+};
+
+export const ProjectPages: FC<TProjectPagesProps> = ({ pages }) => {
   return (
     <div className='bg-gray-100 overflow-x-scroll border border-gray-400 rounded-2xl shadow-sm'>
       <div className='min-w-[800px]'>
@@ -26,9 +30,9 @@ export const ProjectUrls = () => {
 
         {/* contents */}
         <div className='bg-white rounded-b-2xl'>
-          {EXAMPLE_URLS.map((url, index) => (
+          {pages?.map((page, index) => (
             <li
-              key={url.id}
+              key={page.id}
               className={clsx('p-3 px-4 flex items-center justify-between', {
                 ['border-t border-gray-400']: index !== 0,
               })}
@@ -39,16 +43,16 @@ export const ProjectUrls = () => {
                 </span>
               </div>
               <div className='w-[25%] flex items-center'>
-                <Link className='text-sm underline' href={`/url/${url.id}`}>
-                  {url.name}
+                <Link className='text-sm underline' href={`/page/${page.id}`}>
+                  {page.name}
                 </Link>
               </div>
               <div className='w-[20%] flex items-center'>
-                <span className='text-sm'>{url.path}</span>
+                <span className='text-sm'>{page.path}</span>
               </div>
               <div className='w-[15%] flex gap-0.5 items-center justify-center'>
-                <Avatar size='w-4 h-4' sizeNumber={16} src={url.user.image} />
-                <span className='text-sm'>{url.user.name}</span>
+                <Avatar size='w-5 h-5' sizeNumber={16} src='' />
+                {/* <span className='text-sm'>{page.name}</span> */}
               </div>
               <div className='w-[10%] flex justify-center items-center'>
                 <button className='w-5 h-5'>

@@ -10,4 +10,6 @@ export const PageValidator = z.object({
       message: 'パスは必須です',
     })
     .max(200, { message: 'プロジェクト名は200字以上入力することはできません' }),
+  projectId: z.string(),
+  level: z.number(),
 });
