@@ -7,4 +7,5 @@ export const ProjectValidator = z.object({
   description: z.string().max(800, {
     message: 'プロジェクト概要は800字以上入力することはできません',
   }),
+  url: z.string(),
 });

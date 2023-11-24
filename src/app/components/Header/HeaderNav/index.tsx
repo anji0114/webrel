@@ -2,7 +2,6 @@
 
 import {
   ArrowLeftOnRectangleIcon,
-  BellAlertIcon,
   Cog8ToothIcon,
 } from '@heroicons/react/24/outline';
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
@@ -28,15 +27,6 @@ export const HeaderNav: FC<THeaderNavProps> = ({ user }) => {
           align='end'
           sideOffset={10}
         >
-          <DropdownMenu.Item className='hover:outline-none'>
-            <Link
-              href='/dashboard/notice'
-              className='text-sm px-4 py-2 w-full flex items-center gap-2 text-left hover:bg-gray-200'
-            >
-              <BellAlertIcon className='w-4' />
-              招待
-            </Link>
-          </DropdownMenu.Item>
           <DropdownMenu.Item className='hover:outline-none'>
             <Link
               href='/dashboard/setting'

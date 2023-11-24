@@ -7,6 +7,7 @@ import { z } from 'zod';
 import { Input } from '@/components/elements/Input';
 import { Modal, TModalProps } from '@/components/elements/Modal';
 import { useCreatePage } from '@/features/project/hooks/useCreatePage';
+import { usePathFormatter } from '@/features/project/hooks/usePathFormatter';
 import { PageValidator } from '@/libs/validators/projectPage';
 
 type TPageCreateModalProps = Omit<TModalProps, 'isDisabled'> & {
@@ -33,7 +34,13 @@ export const PageCreateModal: FC<TPageCreateModalProps> = ({
   const { createPage, isLoading } = useCreatePage(projectId);
 
   const onCreatePage = async (data: TFormData) => {
-    createPage(data);
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const newPath = usePathFormatter(data.path);
+    const newData = {
+      ...data,
+      path: newPath,
+    };
+    createPage(newData);
     reset();
     if (onCancel) onCancel();
   };

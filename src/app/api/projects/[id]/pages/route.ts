@@ -23,24 +23,3 @@ export const POST = async (req: NextRequest, context: TContext) => {
 
   return NextResponse.json({ message: 'success', data: projectPage });
 };
-
-export const GET = async (request: NextRequest, context: TContext) => {
-  const session = await getAuthSession();
-
-  if (!session?.user) {
-    return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
-  }
-
-  const { id } = context.params;
-
-  const projectPages = await db.projectPage.findMany({
-    where: {
-      projectId: id,
-    },
-  });
-
-  return NextResponse.json(
-    { message: 'success', data: projectPages },
-    { status: 200 },
-  );
-};

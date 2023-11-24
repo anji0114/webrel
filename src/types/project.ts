@@ -6,6 +6,7 @@ export type TProject = {
   createdAt: string;
   updatedAt: string;
   pages: TProjectPage[];
+  urls: TProjectUrl[];
 };
 
 export type TProjectPayload = Pick<TProject, 'name' | 'description'>;
@@ -16,4 +17,9 @@ export type TProjectPage = {
   name: string;
   path: string;
   level: number;
+};
+
+export type TProjectUrl = {
+  id: string;
+  url: string;
 };

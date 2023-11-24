@@ -70,6 +70,14 @@ model Project {
   updatedAt   DateTime      @updatedAt
   pages       ProjectPage[]
   status      Status[]
+  urls        ProjectUrl[]
+}
+
+model ProjectUrl {
+  id        String  @id @default(cuid())
+  url       String
+  projectId String  @unique
+  project   Project @relation(fields: [projectId], references: [id])
 }
 
 model ProjectPage {

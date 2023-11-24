@@ -29,7 +29,7 @@ export const ProjectMain: FC<TProjectMainProps> = ({ projectId }) => {
       <div className='mt-4'>
         <ProjectSort projectId={projectId} />
         <div className='mt-10'>
-          <ProjectPages pages={data?.pages} />
+          <ProjectPages pages={data?.pages} url={data?.urls[0].url} />
         </div>
       </div>
     </div>

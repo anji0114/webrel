@@ -4,8 +4,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { FC } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-import { Input,  Textarea } from '@/components/elements';
-import {Modal, TModalProps} from "@/components/elements/Modal"
+import { Input, Textarea } from '@/components/elements';
+import { Modal, TModalProps } from '@/components/elements/Modal';
 import { useCreateProject } from '@/features/dashboard/hooks/useCreateProject';
 import { ProjectValidator } from '@/libs/validators/project';
 
@@ -67,6 +67,24 @@ export const ProjectCreateModal: FC<TProjectCreateModalProps> = ({
               {errors.name && (
                 <p className='mt-1 text-danger text-sm'>
                   {errors.name.message}
+                </p>
+              )}
+            </dd>
+          </dl>
+          <dl className='md:flex'>
+            <dt className=' font-medium leading-none md:pt-4 md:w-[140px]'>
+              URL
+            </dt>
+            <dd className='mt-4 w-full md:mt-0 md:w-[calc(100%_-_140px)]'>
+              <Input
+                className='w-full'
+                placeholder='https://webrel.com'
+                required
+                {...register('url')}
+              />
+              {errors.url && (
+                <p className='mt-1 text-danger text-sm'>
+                  {errors.url.message}
                 </p>
               )}
             </dd>
