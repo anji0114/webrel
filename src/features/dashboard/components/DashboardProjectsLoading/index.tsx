@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Card } from '@/components/elements/Card';
+import { Card } from '@/components/elements';
 
 export const DashboardProjectsLoading: FC = () => {
   return (

@@ -61,11 +61,48 @@ model VerificationToken {
 }
 
 model Project {
-  id          String   @id @default(cuid())
+  id          String        @id @default(cuid())
   name        String
   description String?
   ownerId     String
-  owner       User     @relation(fields: [ownerId], references: [id])
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  owner       User          @relation(fields: [ownerId], references: [id])
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  pages       ProjectPage[]
+  status      Status[]
+  urls        ProjectUrl[]
+}
+
+model ProjectUrl {
+  id        String  @id @default(cuid())
+  url       String
+  projectId String  @unique
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+}
+
+model ProjectPage {
+  id        String        @id @default(cuid())
+  name      String
+  path      String
+  parentId  String?       @map("parentId")
+  parent    ProjectPage?  @relation("children", fields: [parentId], references: [id])
+  children  ProjectPage[] @relation("children")
+  level     Int
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+  projectId String
+  project   Project       @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  statusId  String?
+  status    Status?       @relation(fields: [statusId], references: [id])
+}
+
+model Status {
+  id          String        @id @default(uuid())
+  name        String
+  projectId   String
+  project     Project       @relation(fields: [projectId], references: [id])
+  color       String
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  projectPage ProjectPage[]
 }

@@ -8,10 +8,10 @@ import {
   memo,
 } from 'react';
 
-type TButtonProps = {
+export type TButtonProps = {
   disabled?: boolean;
   isLoading?: boolean;
-  color: 'dark' | 'blue' | 'red' | 'gray';
+  color: 'dark' | 'blue' | 'red' | 'gray' | 'grayRed';
   size: 'sm' | 'md' | 'lg';
   fullWidth?: boolean;
   href?: string;
@@ -37,6 +37,8 @@ const style = {
     blue: 'text-white bg-accent hover:bg-accent-dark',
     red: 'text-white bg-danger hover:bg-danger-dark',
     gray: 'text-gray-900 bg-gray-200 border border-gray-300 hover:bg-gray-300 hover:border-gray-400',
+    grayRed:
+      'text-danger bg-gray-200 border border-gray-300 hover:bg-gray-300 hover:border-gray-400',
   },
 };
 

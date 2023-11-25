@@ -1,3 +1,4 @@
+'use client';
 import clsx from 'clsx';
 import { ComponentProps, forwardRef } from 'react';
 import TextareaAutosize from 'react-textarea-autosize';

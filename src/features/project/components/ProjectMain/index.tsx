@@ -1,20 +1,24 @@
 'use client';
 
-import React, { FC } from 'react';
+import { FC } from 'react';
+import { ErrorArea } from '@/components/common/ErrorArea';
+import { LoadingArea } from '@/components/common/LoadingArea';
+import { ProjectPages } from '@/features/project/components/ProjectPages';
 import { ProjectSort } from '@/features/project/components/ProjectSort';
-import { ProjectUrls } from '@/features/project/components/ProjectUrls';
-import { useProject } from '@/features/project/services/fetchProjectApi';
+import { useProject } from '@/features/project/hooks/useProject';
 
 type TProjectMainProps = {
-  id: string;
+  projectId: string;
 };
 
-export const ProjectMain: FC<TProjectMainProps> = ({ id }) => {
-  const { data, isLoading, error } = useProject(id);
+export const ProjectMain: FC<TProjectMainProps> = ({ projectId }) => {
+  const { data, isLoading, error } = useProject(projectId);
 
-  if (isLoading) return 'ローディング中';
+  if (isLoading) return <LoadingArea />;
 
-  if (error) return 'エラー';
+  if (error) {
+    return <ErrorArea text={error.message} />;
+  }
 
   return (
     <div>
@@ -23,9 +27,9 @@ export const ProjectMain: FC<TProjectMainProps> = ({ id }) => {
       </h1>
 
       <div className='mt-4'>
-        <ProjectSort />
+        <ProjectSort projectId={projectId} />
         <div className='mt-10'>
-          <ProjectUrls />
+          <ProjectPages projectId={projectId} pages={data?.pages} url={data?.urls[0]?.url} />
         </div>
       </div>
     </div>

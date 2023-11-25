@@ -5,6 +5,21 @@ export type TProject = {
   ownerId: string;
   createdAt: string;
   updatedAt: string;
+  pages: TProjectPage[];
+  urls: TProjectUrl[];
 };
 
 export type TProjectPayload = Pick<TProject, 'name' | 'description'>;
+
+export type TProjectPage = {
+  id: string;
+  projectId: string;
+  name: string;
+  path: string;
+  level: number;
+};
+
+export type TProjectUrl = {
+  id: string;
+  url: string;
+};

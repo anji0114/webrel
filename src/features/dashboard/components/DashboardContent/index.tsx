@@ -1,6 +1,6 @@
 'use client';
 import { FC, useState } from 'react';
-import { Button } from '@/components/elements/Button';
+import { Button } from '@/components/elements';
 import { DashboardProjects } from '@/features/dashboard/components/DashboardProjects';
 import { ProjectCreateModal } from '@/features/dashboard/components/ProjectCreateModal.tsx';
 import { useProjectList } from '@/features/dashboard/hooks/useProjects';
@@ -8,10 +8,6 @@ import { useProjectList } from '@/features/dashboard/hooks/useProjects';
 export const DashboardContent: FC = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const { projects, projectsLoading, projectsError } = useProjectList();
-
-  const onCancel = () => {
-    setModalOpen(false);
-  };
 
   return (
     <>
@@ -50,7 +46,12 @@ export const DashboardContent: FC = () => {
           </div>
         </div>
       </div>
-      <ProjectCreateModal open={modalOpen} onCancel={onCancel} />
+      <ProjectCreateModal
+        open={modalOpen}
+        onCancel={() => {
+          setModalOpen(false);
+        }}
+      />
     </>
   );
 };
