@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import { useDeleteProjectPage } from '../../hooks/useProjectPage';
 import { Modal, TModalProps } from '@/components/elements/Modal';
+import { useDeleteProjectPage } from '@/features/project/hooks/useProjectPage';
 
 type TPageDeleteModalProps = Omit<TModalProps, 'isDisabled' | 'onCancel'> & {
   onCancel: () => void;

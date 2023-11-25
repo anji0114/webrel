@@ -1,10 +1,10 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { TPagePayload } from '../types/page';
 import { QUERY_KEYS } from '@/constants/queryKey';
 import {
   deleteProjectPageApi,
   updateProjectPageApi,
 } from '@/features/project/services/projectPagesApi';
+import { TPagePayload } from '@/features/project/types/page';
 
 export const useUpdateProjectPage = (projectId: string, pageId: string) => {
   const queryClient = useQueryClient();

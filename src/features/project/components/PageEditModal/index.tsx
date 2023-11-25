@@ -1,9 +1,9 @@
 'use client';
 
 import { FC, useState } from 'react';
-import { useUpdateProjectPage } from '../../hooks/useProjectPage';
 import { Input } from '@/components/elements';
 import { Modal, TModalProps } from '@/components/elements/Modal';
+import { useUpdateProjectPage } from '@/features/project/hooks/useProjectPage';
 
 type TPageEditModalModalProps = Omit<TModalProps, 'isDisabled' | 'onCancel'> & {
   onCancel: () => void;
