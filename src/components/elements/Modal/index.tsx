@@ -1,13 +1,16 @@
+'use client';
+
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import * as Dialog from '@radix-ui/react-dialog';
 import clsx from 'clsx';
 import { FC, PropsWithChildren } from 'react';
-import { Button } from '../Button';
+import { Button, TButtonProps } from '@/components/elements';
 
 export type TModalProps = PropsWithChildren & {
   open: boolean;
   okText?: string;
   onOk?: () => void;
+  okButtonColor?: TButtonProps['color'];
   cancelText?: string;
   onCancel?: () => void;
   isLoading?: boolean;
@@ -19,6 +22,7 @@ export const Modal: FC<TModalProps> = ({
   open,
   okText = '保存する',
   onOk,
+  okButtonColor = 'dark',
   cancelText = 'キャンセル',
   onCancel,
   isLoading,
@@ -51,7 +55,7 @@ export const Modal: FC<TModalProps> = ({
               </div>
               <div className='w-[120px]'>
                 <Button
-                  color='dark'
+                  color={okButtonColor}
                   size='sm'
                   onClick={onOk}
                   isLoading={isLoading}

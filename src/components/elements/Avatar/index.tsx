@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { FC } from 'react';
 
 type TAvatarProps = {
-  src: string | null;
+  src: string | null | undefined;
   alt?: string;
   size?: string;
   sizeNumber?: number;
@@ -21,7 +21,7 @@ export const Avatar: FC<TAvatarProps> = ({
     <span className={clsx('rounded-full', size, className)}>
       <Image
         className='rounded-full w-full h-full object-cover'
-        src={src ? src : ''}
+        src={src || '/images/icon/user.svg'}
         alt={alt}
         width={sizeNumber}
         height={sizeNumber}

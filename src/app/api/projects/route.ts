@@ -25,15 +25,34 @@ export const POST = async (req: NextRequest) => {
     return new Response('Unauthorized', { status: 401 });
   }
 
-  const body = await req.json();
+  try {
+    const body = await req.json();
+    const project = await db.project.create({
+      data: {
+        name: body.name,
+        description: body.description,
+        ownerId: session.user.id,
+      },
+    });
 
-  const project = await db.project.create({
-    data: {
-      name: body.name,
-      description: body.description,
-      ownerId: session.user.id,
-    },
-  });
+    await db.projectUrl.create({
+      data: {
+        url: body.url,
+        projectId: project.id,
+      },
+    });
 
-  return NextResponse.json({ message: 'success', data: project });
+    return NextResponse.json(
+      {
+        message: 'success',
+        data: project,
+      },
+      { status: 201 },
+    );
+  } catch {
+    return NextResponse.json(
+      { message: 'bad request', data: null },
+      { status: 400 },
+    );
+  }
 };

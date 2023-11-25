@@ -1,8 +1,8 @@
-import { AxiosError } from 'axios';
 import { FC } from 'react';
-import { Button } from '@/components/elements/Button';
+import { Button } from '@/components/elements';
 import { DashboardProject } from '@/features/dashboard/components/DashboardProject';
 import { DashboardProjectsLoading } from '@/features/dashboard/components/DashboardProjectsLoading';
+import { ApiError } from '@/types/api';
 import { TProject } from '@/types/project';
 
 export type TDashboardProject = Omit<TProject, 'createdAt'>;
@@ -11,7 +11,7 @@ type TDashboardProjectsProps = {
   projects: TDashboardProject[] | undefined;
   modalOpen?: () => void;
   isLoading?: boolean;
-  isError: AxiosError | null;
+  isError: ApiError | null;
   isJoin?: boolean;
 };
 

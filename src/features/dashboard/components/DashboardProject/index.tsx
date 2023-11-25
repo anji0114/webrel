@@ -2,12 +2,15 @@ import { ArrowPathIcon } from '@heroicons/react/20/solid';
 import clsx from 'clsx';
 import Link from 'next/link';
 import { FC } from 'react';
-import { Card } from '@/components/elements/Card';
+import { Card } from '@/components/elements';
 
 import { TDashboardProject } from '@/features/dashboard/components/DashboardProjects';
 import { useFormattedDate } from '@/hooks/useFormattedDate';
 
-export type TDashboardProjectProps = TDashboardProject & {
+export type TDashboardProjectProps = Omit<
+  TDashboardProject,
+  'pages' | 'urls'
+> & {
   className?: string;
 };
 

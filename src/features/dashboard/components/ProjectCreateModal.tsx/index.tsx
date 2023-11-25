@@ -4,18 +4,17 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { FC } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-import { Input } from '@/components/elements/Input';
+import { Input, Textarea } from '@/components/elements';
 import { Modal, TModalProps } from '@/components/elements/Modal';
-import { Textarea } from '@/components/elements/Textarea';
 import { useCreateProject } from '@/features/dashboard/hooks/useCreateProject';
-import { PostValidator } from '@/libs/validators/project';
+import { ProjectValidator } from '@/libs/validators/project';
 
 type TProjectCreateModalProps = Omit<
   TModalProps,
   'isDisabled' | 'cancelText' | 'hideFooter' | 'children'
 >;
 
-type FormData = z.infer<typeof PostValidator>;
+type FormData = z.infer<typeof ProjectValidator>;
 
 export const ProjectCreateModal: FC<TProjectCreateModalProps> = ({
   open,
@@ -27,7 +26,7 @@ export const ProjectCreateModal: FC<TProjectCreateModalProps> = ({
     formState: { errors },
     watch,
   } = useForm<FormData>({
-    resolver: zodResolver(PostValidator),
+    resolver: zodResolver(ProjectValidator),
   });
 
   const nameValue = watch('name');
@@ -69,6 +68,22 @@ export const ProjectCreateModal: FC<TProjectCreateModalProps> = ({
                 <p className='mt-1 text-danger text-sm'>
                   {errors.name.message}
                 </p>
+              )}
+            </dd>
+          </dl>
+          <dl className='md:flex'>
+            <dt className=' font-medium leading-none md:pt-4 md:w-[140px]'>
+              URL
+            </dt>
+            <dd className='mt-4 w-full md:mt-0 md:w-[calc(100%_-_140px)]'>
+              <Input
+                className='w-full'
+                placeholder='https://webrel.com'
+                required
+                {...register('url')}
+              />
+              {errors.url && (
+                <p className='mt-1 text-danger text-sm'>{errors.url.message}</p>
               )}
             </dd>
           </dl>
