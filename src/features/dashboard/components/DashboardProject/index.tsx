@@ -7,7 +7,10 @@ import { Card } from '@/components/elements';
 import { TDashboardProject } from '@/features/dashboard/components/DashboardProjects';
 import { useFormattedDate } from '@/hooks/useFormattedDate';
 
-export type TDashboardProjectProps = TDashboardProject & {
+export type TDashboardProjectProps = Omit<
+  TDashboardProject,
+  'pages' | 'urls'
+> & {
   className?: string;
 };
 
