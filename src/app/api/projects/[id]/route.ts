@@ -37,10 +37,10 @@ export const GET = async (request: NextRequest, context: TContext) => {
 export const DELETE = async (request: NextRequest, context: TContext) => {
   const session = await getAuthSession();
   if (!session?.user) {
-    return new Response('Unauthorized', { status: 401 });
+    return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
   }
-
   const { id } = context.params;
+
   const project = await db.project.delete({
     where: {
       id: id,

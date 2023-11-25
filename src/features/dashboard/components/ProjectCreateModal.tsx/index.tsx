@@ -83,9 +83,7 @@ export const ProjectCreateModal: FC<TProjectCreateModalProps> = ({
                 {...register('url')}
               />
               {errors.url && (
-                <p className='mt-1 text-danger text-sm'>
-                  {errors.url.message}
-                </p>
+                <p className='mt-1 text-danger text-sm'>{errors.url.message}</p>
               )}
             </dd>
           </dl>

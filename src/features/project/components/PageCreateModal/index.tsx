@@ -53,7 +53,7 @@ export const PageCreateModal: FC<TPageCreateModalProps> = ({
         onOk={handleSubmit(onCreatePage)}
         isLoading={isLoading}
       >
-        <p className='font-bold text-xl leading-tight'>新規URL作成</p>
+        <p className='font-bold text-xl leading-tight'>新規ページ作成</p>
         <p className='mt-4 text-gray-600'>
           新しいプロジェクトを開始するには、プロジェクト名を入力し、目的やカテゴリを選択してください。
           <br />
