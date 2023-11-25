@@ -9,6 +9,7 @@ import { TProjectPage } from '@/types/project';
 type TProjectPagesProps = {
   pages: TProjectPage[] | undefined;
   url?: string;
+  projectId: string;
 };
 
 type TPageData = {
@@ -20,6 +21,7 @@ type TPageData = {
 export const ProjectPages: FC<TProjectPagesProps> = ({
   pages,
   url = 'http://localhost:3000',
+  projectId,
 }) => {
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [editModalOpen, setEditModalOpen] = useState(false);
@@ -92,6 +94,7 @@ export const ProjectPages: FC<TProjectPagesProps> = ({
           onCancel={() => {
             setDeleteModalOpen(false);
           }}
+          projectId={projectId}
           pageId={deletePageData.id}
           pageName={deletePageData.name}
         />
@@ -104,6 +107,7 @@ export const ProjectPages: FC<TProjectPagesProps> = ({
           onCancel={() => {
             setEditModalOpen(false);
           }}
+          projectId={projectId}
           pageId={editPageData.id}
           pageName={editPageData.name}
           pagePath={editPageData.path}
