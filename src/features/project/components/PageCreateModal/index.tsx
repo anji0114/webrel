@@ -1,13 +1,15 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { FC } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { Input } from '@/components/elements/Input';
 import { Modal, TModalProps } from '@/components/elements/Modal';
-import { useCreatePage } from '@/features/project/hooks/useCreatePage';
+import { QUERY_KEYS } from '@/constants/queryKey';
 import { usePathFormatter } from '@/features/project/hooks/usePathFormatter';
+import { createPageApi } from '@/features/project/services/createPageApi';
 import { PageValidator } from '@/libs/validators/projectPage';
 
 type TPageCreateModalProps = Omit<TModalProps, 'isDisabled'> & {
@@ -21,17 +23,36 @@ export const PageCreateModal: FC<TPageCreateModalProps> = ({
   onCancel,
   projectId,
 }) => {
+  const queryClient = useQueryClient();
+
   const {
     register,
     handleSubmit,
     reset,
+    watch,
     formState: { errors },
   } = useForm<TFormData>({
     defaultValues: { name: '', path: '', level: 0, projectId: projectId },
     resolver: zodResolver(PageValidator),
   });
+  const nameValue = watch('name');
+  const pathValue = watch('path');
 
-  const { createPage, isLoading } = useCreatePage(projectId);
+  const { mutate, isLoading } = useMutation({
+    mutationFn: async (payload: TFormData) => {
+      return createPageApi(payload, projectId);
+    },
+    onSuccess: async () => {
+      await queryClient.invalidateQueries([
+        QUERY_KEYS.PROJECT.FETCH_PROJECT,
+        projectId,
+      ]);
+      reset();
+    },
+    onError: () => {
+      console.log('エラー');
+    },
+  });
 
   const onCreatePage = async (data: TFormData) => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -40,9 +61,7 @@ export const PageCreateModal: FC<TPageCreateModalProps> = ({
       ...data,
       path: newPath,
     };
-    createPage(newData);
-    reset();
-    if (onCancel) onCancel();
+    mutate(newData);
   };
 
   return (
@@ -51,6 +70,7 @@ export const PageCreateModal: FC<TPageCreateModalProps> = ({
         open={open}
         onCancel={onCancel}
         onOk={handleSubmit(onCreatePage)}
+        isDisabled={!nameValue || !pathValue}
         isLoading={isLoading}
       >
         <p className='font-bold text-xl leading-tight'>新規ページ作成</p>

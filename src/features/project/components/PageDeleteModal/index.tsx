@@ -1,6 +1,8 @@
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { FC } from 'react';
 import { Modal, TModalProps } from '@/components/elements/Modal';
-import { useDeleteProjectPage } from '@/features/project/hooks/useProjectPage';
+import { QUERY_KEYS } from '@/constants/queryKey';
+import { deleteProjectPageApi } from '@/features/project/services/projectPagesApi';
 
 type TPageDeleteModalProps = Omit<TModalProps, 'isDisabled' | 'onCancel'> & {
   onCancel: () => void;
@@ -16,15 +18,20 @@ export const PageDeleteModal: FC<TPageDeleteModalProps> = ({
   pageName,
   projectId,
 }) => {
-  const { deleteProjectPage, isLoading } = useDeleteProjectPage(
-    projectId,
-    pageId,
-  );
+  const queryClient = useQueryClient();
 
-  const onDelete = async () => {
-    await deleteProjectPage();
-    onCancel();
-  };
+  const { mutate: deleteProjectPage, isLoading } = useMutation({
+    mutationFn: async () => {
+      return deleteProjectPageApi(projectId, pageId);
+    },
+    onSuccess: async () => {
+      await queryClient.invalidateQueries([
+        QUERY_KEYS.PROJECT.FETCH_PROJECT,
+        projectId,
+      ]);
+      onCancel();
+    },
+  });
 
   return (
     <>
@@ -33,7 +40,7 @@ export const PageDeleteModal: FC<TPageDeleteModalProps> = ({
         okButtonColor='red'
         open={open}
         onCancel={onCancel}
-        onOk={onDelete}
+        onOk={deleteProjectPage}
         isLoading={isLoading}
       >
         <p className='text-danger font-bold text-lg'>ページの削除</p>
