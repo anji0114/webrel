@@ -3,6 +3,15 @@ import { getAuthSession } from '@/libs/auth';
 import { db } from '@/libs/db';
 import { TContext } from '@/types/api';
 
+export const GET = async () => {
+  const session = await getAuthSession();
+  if (!session?.user) {
+    return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
+  }
+
+  return NextResponse.json({ message: 'success', data: '' });
+};
+
 export const POST = async (req: NextRequest, context: TContext) => {
   const session = await getAuthSession();
 

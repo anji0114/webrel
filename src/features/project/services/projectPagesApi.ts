@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { TPagePayload } from '../types/page';
+import { TPagePayload } from '@/features/project/types/page';
 import { TApiResponse } from '@/types/api';
 import { TProjectPage } from '@/types/project';
 
