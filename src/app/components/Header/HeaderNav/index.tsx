@@ -6,6 +6,7 @@ import {
 } from '@heroicons/react/24/outline';
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { User } from 'next-auth';
 import { signOut } from 'next-auth/react';
 import { FC } from 'react';
@@ -16,6 +17,12 @@ type THeaderNavProps = {
 };
 
 export const HeaderNav: FC<THeaderNavProps> = ({ user }) => {
+  const router = useRouter();
+  const onLogout = async () => {
+    await signOut();
+    router.push('/login');
+  };
+
   return (
     <DropdownMenu.Root>
       <DropdownMenu.Trigger className='outline-none'>
@@ -39,7 +46,7 @@ export const HeaderNav: FC<THeaderNavProps> = ({ user }) => {
           <DropdownMenu.Item className='hover:outline-none'>
             <button
               className='text-sm px-4 py-2 w-full flex items-center gap-2 text-left hover:bg-gray-200'
-              onClick={() => signOut()}
+              onClick={onLogout}
             >
               <ArrowLeftOnRectangleIcon className='w-4' />
               ログアウト

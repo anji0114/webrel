@@ -6,7 +6,7 @@ export const GET = async () => {
   const session = await getAuthSession();
 
   if (!session?.user) {
-    return new Response('Unauthorized', { status: 401 });
+    return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
   }
 
   const projects = await db.project.findMany({
@@ -22,7 +22,7 @@ export const POST = async (req: NextRequest) => {
   const session = await getAuthSession();
 
   if (!session?.user) {
-    return new Response('Unauthorized', { status: 401 });
+    return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
   }
 
   try {

@@ -11,11 +11,12 @@ export const POST = async (req: NextRequest, context: TContext) => {
   }
 
   const body = await req.json();
+  const projectId = context.params.id;
 
   const projectPage = await db.projectUrl.create({
     data: {
       url: body.url,
-      projectId: context.params.id,
+      projectId: projectId,
     },
   });
 

@@ -4,7 +4,7 @@ import { fetchProjectListApi } from '@/services/projectApi';
 import { ApiError } from '@/types/api';
 import { TProject } from '@/types/project';
 
-export const useProjectList = () => {
+export const useProjects = () => {
   const {
     data: projects,
     isLoading: projectsLoading,

@@ -1,10 +1,18 @@
 import { CursorArrowRaysIcon } from '@heroicons/react/24/outline';
 import { NextPage } from 'next';
 import Image from 'next/image';
+import { redirect } from 'next/navigation';
 import { NonLoginHeader } from '@/app/components/Header/NonLoginHeader';
 import { Button } from '@/components/elements';
+import { getAuthSession } from '@/libs/auth';
 
 const Home: NextPage = async () => {
+  const session = await getAuthSession();
+
+  if (session?.user.id) {
+    redirect('/dashboard');
+  }
+
   return (
     <>
       <NonLoginHeader bgTransparent />

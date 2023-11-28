@@ -1,13 +1,15 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useRouter } from 'next/navigation';
 import { FC } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-import { Input, Textarea } from '@/components/elements';
-import { Modal, TModalProps } from '@/components/elements/Modal';
-import { useCreateProject } from '@/features/dashboard/hooks/useCreateProject';
+import { Input, Textarea, Modal, TModalProps } from '@/components/elements';
+import { QUERY_KEYS } from '@/constants/queryKey';
 import { ProjectValidator } from '@/libs/validators/project';
+import { createProjectApi } from '@/services/projectApi';
 
 type TProjectCreateModalProps = Omit<
   TModalProps,
@@ -20,6 +22,9 @@ export const ProjectCreateModal: FC<TProjectCreateModalProps> = ({
   open,
   onCancel,
 }) => {
+  const queryClient = useQueryClient();
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
@@ -28,13 +33,21 @@ export const ProjectCreateModal: FC<TProjectCreateModalProps> = ({
   } = useForm<FormData>({
     resolver: zodResolver(ProjectValidator),
   });
-
   const nameValue = watch('name');
-  const { createProject, isLoading } = useCreateProject();
-  const onCreateProject = (data: FormData) => {
-    if (!nameValue) return;
-    createProject(data);
-  };
+  const urlValue = watch('url');
+
+  const { mutate, isLoading } = useMutation({
+    mutationFn: async (payload: FormData) => {
+      return createProjectApi(payload);
+    },
+    onSuccess: (data) => {
+      queryClient.invalidateQueries([QUERY_KEYS.PROJECT.FETCH_PROJECTS]);
+      router.push(`/project/${data.id}`);
+    },
+    onError: () => {
+      console.log('失敗');
+    },
+  });
 
   return (
     <>
@@ -42,8 +55,10 @@ export const ProjectCreateModal: FC<TProjectCreateModalProps> = ({
         open={open}
         onCancel={onCancel}
         okText='作成する'
-        onOk={handleSubmit(onCreateProject)}
-        isDisabled={!nameValue}
+        onOk={handleSubmit((payload) => {
+          mutate(payload);
+        })}
+        isDisabled={!nameValue || !urlValue}
         isLoading={isLoading}
       >
         <p className='font-bold text-xl leading-tight'>新規プロジェクト作成</p>

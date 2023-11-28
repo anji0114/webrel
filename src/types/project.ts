@@ -9,7 +9,9 @@ export type TProject = {
   urls: TProjectUrl[];
 };
 
-export type TProjectPayload = Pick<TProject, 'name' | 'description'>;
+export type TProjectPayload = Pick<TProject, 'name' | 'description'> & {
+  url: string;
+};
 
 export type TProjectPage = {
   id: string;
