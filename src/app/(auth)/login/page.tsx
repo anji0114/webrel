@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description: 'URLベースでタスク・情報を管理する',
 };
 
-const page = () => {
+const page = async () => {
   return <AuthContent title='Webrelにログインする' type='login' />;
 };
 
