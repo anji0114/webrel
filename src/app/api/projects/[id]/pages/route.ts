@@ -3,13 +3,34 @@ import { getAuthSession } from '@/libs/auth';
 import { db } from '@/libs/db';
 import { TContext } from '@/types/api';
 
-export const GET = async () => {
+export const GET = async (req: NextRequest, context: TContext) => {
   const session = await getAuthSession();
   if (!session?.user) {
     return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
   }
 
-  return NextResponse.json({ message: 'success', data: '' });
+  const projectId = context.params.id;
+
+  const project = await db.project.findFirst({
+    where: {
+      id: projectId,
+    },
+    select: {
+      ownerId: true,
+    },
+  });
+
+  if (session.user.id !== project?.ownerId) {
+    NextResponse.json({ message: 'not found' }, { status: 404 });
+  }
+
+  const pages = await db.projectPage.findMany({
+    where: {
+      projectId: projectId,
+    },
+  });
+
+  return NextResponse.json({ message: 'success', data: pages });
 };
 
 export const POST = async (req: NextRequest, context: TContext) => {
