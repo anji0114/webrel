@@ -5,7 +5,6 @@ export type TProject = {
   ownerId: string;
   createdAt: string;
   updatedAt: string;
-  pages: TProjectPage[];
   urls: TProjectUrl[];
 };
 

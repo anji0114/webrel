@@ -16,7 +16,6 @@ export const GET = async (request: NextRequest, context: TContext) => {
   const { id } = context.params;
   const project = await db.project.findUnique({
     include: {
-      pages: true,
       urls: true,
     },
     where: {

@@ -1,14 +1,15 @@
 'use client';
 
+import { useQuery } from '@tanstack/react-query';
 import { FC, useState } from 'react';
+import { QUERY_KEYS } from '@/constants/queryKey';
 import { PageDeleteModal } from '@/features/project/components/PageDeleteModal';
 import { PageEditModal } from '@/features/project/components/PageEditModal';
 import { ProjectPageItem } from '@/features/project/components/ProjectPages/ProjectPageItem';
-import { TProjectPage } from '@/types/project';
+import { fetchProjectPagesApi } from '@/features/project/services/projectPagesApi';
 
 type TProjectPagesProps = {
-  pages: TProjectPage[] | undefined;
-  url?: string;
+  url: string;
   projectId: string;
 };
 
@@ -18,11 +19,7 @@ type TPageData = {
   path: string;
 };
 
-export const ProjectPages: FC<TProjectPagesProps> = ({
-  pages,
-  url = 'http://localhost:3000',
-  projectId,
-}) => {
+export const ProjectPages: FC<TProjectPagesProps> = ({ url, projectId }) => {
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [editModalOpen, setEditModalOpen] = useState(false);
 
@@ -47,6 +44,13 @@ export const ProjectPages: FC<TProjectPagesProps> = ({
     setDeletePageData({ id, name });
     setDeleteModalOpen(true);
   };
+
+  const { data: pages } = useQuery({
+    queryKey: [QUERY_KEYS.PROJECT.FETCH_PROJECT_PAGES, projectId],
+    queryFn: async () => {
+      return fetchProjectPagesApi(projectId);
+    },
+  });
 
   return (
     <>
