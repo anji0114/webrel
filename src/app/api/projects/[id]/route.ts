@@ -33,6 +33,32 @@ export const GET = async (request: NextRequest, context: TContext) => {
   );
 };
 
+export const PUT = async (request: NextRequest, context: TContext) => {
+  const session = await getAuthSession();
+  if (!session?.user) {
+    return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
+  }
+
+  const projectId = context.params.id;
+  const body = await request.json();
+
+  const project = await db.project.update({
+    where: {
+      id: projectId,
+    },
+
+    data: {
+      name: body.name,
+      description: body.description,
+    },
+  });
+
+  return NextResponse.json(
+    { message: 'success', data: project },
+    { status: 200 },
+  );
+};
+
 export const DELETE = async (request: NextRequest, context: TContext) => {
   const session = await getAuthSession();
   if (!session?.user) {

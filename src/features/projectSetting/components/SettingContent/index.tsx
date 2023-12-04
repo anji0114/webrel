@@ -19,13 +19,19 @@ export const SettingContent: FC<TSettingContentProps> = ({ projectId }) => {
     return <LoadingArea />;
   }
 
-  if (!data) return null;
+  if (!data) {
+    return <p className='text-center'>プロジェクトは見つかりませんでした。</p>;
+  }
 
   return (
     <div className='mx-auto max-w-[720px]'>
       <h2 className='text-3xl font-bold'>プロジェクト設定</h2>
       <div className='mt-8 space-y-4'>
-        <SettingEdit name={data.name} />
+        <SettingEdit
+          projectId={projectId}
+          name={data.name}
+          description={data.description}
+        />
         <SettingUrls urls={data.urls} />
         <SettingStatuses />
         <SettingDelete projectId={projectId} />
