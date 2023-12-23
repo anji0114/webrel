@@ -32,7 +32,7 @@ export const SettingContent: FC<TSettingContentProps> = ({ projectId }) => {
           name={data.name}
           description={data.description}
         />
-        <SettingUrls urls={data.urls} />
+        <SettingUrls projectId={projectId} urls={data.urls} />
         <SettingStatuses />
         <SettingDelete projectId={projectId} />
       </div>

@@ -2,15 +2,17 @@
 
 import { PlusCircleIcon } from '@heroicons/react/24/outline';
 import { FC, useState } from 'react';
+import { createProjectUrl } from '../../services/createProjectUrl';
 import { SettingUrlItem } from './SettingUrlItem';
 import { Button, Card } from '@/components/elements';
 import { TProjectUrl } from '@/types/project';
 
 type TSettingUrlsProps = {
+  projectId: string;
   urls: TProjectUrl[];
 };
 
-export const SettingUrls: FC<TSettingUrlsProps> = ({ urls }) => {
+export const SettingUrls: FC<TSettingUrlsProps> = ({ projectId, urls }) => {
   const [addUrls, setAddUrls] = useState<string[] | undefined>();
 
   // old url
@@ -24,7 +26,7 @@ export const SettingUrls: FC<TSettingUrlsProps> = ({ urls }) => {
 
   // new url function
   const onSaveUrl = (value: string) => {
-    console.log(`${value} save`);
+    createProjectUrl(projectId, value);
   };
 
   const onDeleteNewUrl = (index: number) => {
