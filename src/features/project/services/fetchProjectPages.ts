@@ -1,10 +1,10 @@
 import axios from 'axios';
+import { TPage } from '@/features/project/types/page';
 import { TApiResponse } from '@/types/api';
-import { TProjectPage } from '@/types/project';
 
 export const fetchProjectPagesApi = async (id: string) => {
   try {
-    const response = await axios.get<TApiResponse<TProjectPage[]>>(
+    const response = await axios.get<TApiResponse<TPage[]>>(
       `/api/projects/${id}/pages`,
     );
     return response.data.data;

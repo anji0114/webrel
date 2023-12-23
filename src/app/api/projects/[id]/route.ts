@@ -16,7 +16,6 @@ export const GET = async (request: NextRequest, context: TContext) => {
   const { id } = context.params;
   const project = await db.project.findUnique({
     include: {
-      pages: true,
       urls: true,
     },
     where: {
@@ -27,6 +26,32 @@ export const GET = async (request: NextRequest, context: TContext) => {
   if (!project || project?.ownerId !== session.user.id) {
     return NextResponse.json({ message: '404 - Not Found' }, { status: 404 });
   }
+
+  return NextResponse.json(
+    { message: 'success', data: project },
+    { status: 200 },
+  );
+};
+
+export const PUT = async (request: NextRequest, context: TContext) => {
+  const session = await getAuthSession();
+  if (!session?.user) {
+    return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
+  }
+
+  const projectId = context.params.id;
+  const body = await request.json();
+
+  const project = await db.project.update({
+    where: {
+      id: projectId,
+    },
+
+    data: {
+      name: body.name,
+      description: body.description,
+    },
+  });
 
   return NextResponse.json(
     { message: 'success', data: project },

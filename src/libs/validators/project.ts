@@ -14,3 +14,7 @@ export const ProjectValidator = z.object({
       message: 'URLの最後に "/" を含めないでください。',
     }),
 });
+
+export const ProjectEditValidator = ProjectValidator.omit({
+  url: true,
+});

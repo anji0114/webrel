@@ -14,7 +14,7 @@ export const Card: FC<TCardProps> = ({
   return (
     <Element
       className={clsx(
-        'p-6 rounded-lg bg-white border border-gray-400 shadow-sm',
+        'p-6 rounded-lg bg-white border border-gray-300 shadow-sm',
         className,
       )}
     >

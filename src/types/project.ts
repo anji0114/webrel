@@ -5,7 +5,6 @@ export type TProject = {
   ownerId: string;
   createdAt: string;
   updatedAt: string;
-  pages: TProjectPage[];
   urls: TProjectUrl[];
 };
 
@@ -13,6 +12,9 @@ export type TProjectPayload = Pick<TProject, 'name' | 'description'> & {
   url: string;
 };
 
+export type TProjectEditPayload = Pick<TProject, 'name' | 'description'>;
+
+// page
 export type TProjectPage = {
   id: string;
   projectId: string;
