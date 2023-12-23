@@ -10,15 +10,15 @@ export const POST = async (req: NextRequest, context: TContext) => {
     return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
   }
 
-  const body = await req.json();
   const projectId = context.params.id;
+  const body = await req.json();
 
-  const projectPage = await db.projectUrl.create({
+  const projectUrl = await db.projectUrl.create({
     data: {
       url: body.url,
       projectId: projectId,
     },
   });
 
-  return NextResponse.json({ message: 'success', data: projectPage });
+  return NextResponse.json({ message: 'success', data: projectUrl });
 };

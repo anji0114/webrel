@@ -76,7 +76,7 @@ model Project {
 model ProjectUrl {
   id        String  @id @default(cuid())
   url       String
-  projectId String  @unique
+  projectId String
   project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
 }
 

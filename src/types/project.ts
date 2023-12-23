@@ -12,6 +12,9 @@ export type TProjectPayload = Pick<TProject, 'name' | 'description'> & {
   url: string;
 };
 
+export type TProjectEditPayload = Pick<TProject, 'name' | 'description'>;
+
+// page
 export type TProjectPage = {
   id: string;
   projectId: string;

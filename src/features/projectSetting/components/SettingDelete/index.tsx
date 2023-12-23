@@ -17,7 +17,7 @@ export const SettingDelete: FC<TSettingDeleteProps> = ({ projectId }) => {
   return (
     <>
       <Card>
-        <h2 className='text-lg leading-tight text-danger font-bold'>
+        <h2 className='text-xl leading-tight text-danger font-bold'>
           プロジェクトの削除
         </h2>
         <p className='mt-6'>
