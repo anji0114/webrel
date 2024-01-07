@@ -1,16 +1,34 @@
-Next.js
-Typescript
-ReactQuery
-Redux
-Tailwind Css
-Next Auth（Auth.js）
-Storybook
-Husky
-Prisma
-Supabase
+# Webrel
 
+## このアプリケーションについて
 
-** Commit ルール
+## 機能
+
+## 　画面
+
+## 実行環境
+
+### ローカルで実行する
+
+## 使用技術
+
+- Next.js
+- Typescript
+- Tastack query （React query）
+- Redux
+- Tailwind Css
+- Next Auth（Auth.js）
+- Storybook
+- Jest
+- Testing library
+- Eslint
+- Prettier
+- Husky
+- Prisma
+- Supabase
+
+## Commit ルール
+
 - chore: ビルドプロセスや補助ツール、ライブラリの更新などの時
 - ci: CIツールの設定ファイルの変更時
 - docs: ドキュメントの更新のみを行う時
