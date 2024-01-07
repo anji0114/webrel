@@ -47,6 +47,7 @@ describe('Button interactions', () => {
   });
 });
 
+// snapshot test
 test('Button snapshot', () => {
   const tree = renderer
     .create(
