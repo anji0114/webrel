@@ -6,7 +6,6 @@ import { useProject } from '@/features/project/hooks/useProject';
 import { SettingDelete } from '@/features/projectSetting/components/SettingDelete';
 import { SettingEdit } from '@/features/projectSetting/components/SettingEdit';
 import { SettingStatuses } from '@/features/projectSetting/components/SettingStatuses';
-import { SettingUrls } from '@/features/projectSetting/components/SettingUrls';
 
 type TSettingContentProps = {
   projectId: string;
@@ -32,7 +31,6 @@ export const SettingContent: FC<TSettingContentProps> = ({ projectId }) => {
           name={data.name}
           description={data.description}
         />
-        <SettingUrls projectId={projectId} urls={data.urls} />
         <SettingStatuses />
         <SettingDelete projectId={projectId} />
       </div>
