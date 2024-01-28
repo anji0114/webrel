@@ -1,6 +1,7 @@
 import '@/styles/globals.css';
 import type { Metadata } from 'next';
 import { QueryProvider } from '@/app/components/QueryProvider';
+import { ToastProvider } from '@/states/Toast';
 
 export const metadata: Metadata = {
   title: 'webrel | Web制作・開発に特化したプロジェクト管理ルール',
@@ -15,7 +16,9 @@ export default function RootLayout({
   return (
     <html lang='ja' suppressHydrationWarning={true}>
       <body>
-        <QueryProvider>{children}</QueryProvider>
+        <QueryProvider>
+          <ToastProvider>{children}</ToastProvider>
+        </QueryProvider>
       </body>
     </html>
   );
