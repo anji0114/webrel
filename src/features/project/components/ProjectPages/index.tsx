@@ -68,26 +68,36 @@ export const ProjectPages: FC<TProjectPagesProps> = ({ url, projectId }) => {
 
           {/* contents */}
           <div className='bg-white rounded-b-2xl'>
-            <ul>
-              {pages?.map((page, index) => (
-                <li
-                  key={page.id}
-                  className={`${index !== 0 ? 'border-t border-gray-400' : ''}`}
-                >
-                  <ProjectPageItem
-                    onDeleteModalOpen={() =>
-                      onDeleteModalOpen(page.id, page.name)
-                    }
-                    onEditModalOpen={() =>
-                      onEditModalOpen(page.id, page.name, page.path)
-                    }
-                    name={page.name}
-                    path={page.path}
-                    url={url}
-                  />
-                </li>
-              ))}
-            </ul>
+            {pages?.length ? (
+              <ul>
+                {pages?.map((page, index) => (
+                  <li
+                    key={page.id}
+                    className={`${
+                      index !== 0 ? 'border-t border-gray-400' : ''
+                    }`}
+                  >
+                    <ProjectPageItem
+                      onDeleteModalOpen={() =>
+                        onDeleteModalOpen(page.id, page.name)
+                      }
+                      onEditModalOpen={() =>
+                        onEditModalOpen(page.id, page.name, page.path)
+                      }
+                      name={page.name}
+                      path={page.path}
+                      url={url}
+                    />
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <div className='p-4'>
+                <div className='w-full p-6 text-center border border-dashed border-gray-400 rounded-lg bg-white shadow-sm'>
+                  <p>作成したページはありません。</p>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
