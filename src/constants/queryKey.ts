@@ -10,4 +10,7 @@ export const QUERY_KEYS = {
     FETCH_PROJECT: 'FETCH_PROJECT',
     FETCH_PROJECT_PAGES: 'FETCH_PROJECT_PAGES',
   },
+  PROFILE: {
+    FETCH_PROFILE: 'FETCH_PROFILE',
+  },
 } as const satisfies TQueryKeys;

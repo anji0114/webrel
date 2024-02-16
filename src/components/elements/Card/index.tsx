@@ -1,5 +1,5 @@
-import clsx from 'clsx';
 import { FC, PropsWithChildren } from 'react';
+import { twMerge } from 'tailwind-merge';
 
 type TCardProps = PropsWithChildren & {
   className?: string;
@@ -13,7 +13,7 @@ export const Card: FC<TCardProps> = ({
 }) => {
   return (
     <Element
-      className={clsx(
+      className={twMerge(
         'p-6 rounded-lg bg-white border border-gray-300 shadow-sm',
         className,
       )}
