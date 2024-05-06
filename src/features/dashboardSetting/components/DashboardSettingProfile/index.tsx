@@ -1,11 +1,12 @@
 'use client';
 
+import { CameraIcon } from '@heroicons/react/24/outline';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { FC } from 'react';
+import { ChangeEvent, FC, useCallback, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-import { Button, Input } from '@/components/elements';
+import { Avatar, Button, Input } from '@/components/elements';
 import { QUERY_KEYS } from '@/constants/queryKey';
 import { updateProfileApi } from '@/features/dashboardSetting/services/updateProfileApi';
 import { profileValidator } from '@/features/dashboardSetting/validators/profile';
@@ -16,15 +17,20 @@ type FormData = z.infer<typeof profileValidator>;
 
 type TDashboardSettingProfileProps = Pick<
   TProfile,
-  'name' | 'occupation' | 'accountId'
+  'name' | 'occupation' | 'accountId' | 'image'
 >;
 
 export const DashboardSettingProfile: FC<TDashboardSettingProfileProps> = ({
   name,
   occupation,
   accountId,
+  image,
 }) => {
   const queryClient = useQueryClient();
+  const [avatarFile, setAvatarFile] = useState<File | null>(null);
+  const [createObjectURL, setCreateObjectURL] = useState<string | null>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+
   const {
     register,
     handleSubmit,
@@ -38,6 +44,8 @@ export const DashboardSettingProfile: FC<TDashboardSettingProfileProps> = ({
   const openToast = useToast();
   const { mutate: onUpdate, isLoading } = useMutation({
     mutationFn: async (payload: FormData) => {
+      if (avatarFile) {
+      }
       return updateProfileApi(payload);
     },
     onSuccess: () => {
@@ -55,9 +63,56 @@ export const DashboardSettingProfile: FC<TDashboardSettingProfileProps> = ({
     },
   });
 
+  const onFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files;
+    if (!file || !file.length) {
+      openToast({
+        type: 'error',
+        children: 'アップロードに失敗しました。',
+      });
+      return;
+    }
+    setCreateObjectURL(URL.createObjectURL(file[0]));
+    setAvatarFile(file[0]);
+  };
+
+  const onCancel = useCallback(() => {
+    reset();
+    setCreateObjectURL(null);
+    if (inputRef.current) {
+      inputRef.current.value = '';
+    }
+  }, [inputRef]);
+
+  const onFileClick = useCallback(() => {
+    if (!inputRef.current) return;
+    inputRef.current.click();
+  }, [inputRef]);
+
   return (
     <div>
       <div className='space-y-4'>
+        <div className='relative w-fit'>
+          <Avatar
+            className='border border-gray-300'
+            src={createObjectURL || image}
+            size={120}
+            alt=''
+          />
+          <div
+            className='absolute right-0 bottom-0 flex items-center justify-center w-10 h-10 text-gray-600 bg-gray-100 shadow rounded-full cursor-pointer hover:text-gray-900'
+            onClick={onFileClick}
+          >
+            <CameraIcon className='w-5 h-5' />
+          </div>
+          <input
+            className='hidden'
+            ref={inputRef}
+            type='file'
+            accept='.png, .jpg, .jpeg'
+            onChange={(e) => onFileChange(e)}
+          />
+        </div>
         <dl className='flex items-center'>
           <dt className=' w-40'>ユーザーネーム</dt>
           <dd className='flex-1'>
@@ -93,13 +148,7 @@ export const DashboardSettingProfile: FC<TDashboardSettingProfileProps> = ({
         </dl>
       </div>
       <div className='flex justify-end gap-4 mt-4'>
-        <Button
-          color='gray'
-          size='sm'
-          onClick={() => {
-            reset();
-          }}
-        >
+        <Button color='gray' size='sm' onClick={onCancel}>
           キャンセル
         </Button>
         <Button

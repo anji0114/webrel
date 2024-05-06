@@ -26,6 +26,7 @@ export const DashboardSettingContent = () => {
             name={data?.name || ''}
             occupation={data?.occupation || ''}
             accountId={data?.accountId || ''}
+            image={data?.image || ''}
           />
         </DashboardSettingCard>
         <DashboardSettingCard title='アカウントの削除'>
