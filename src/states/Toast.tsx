@@ -14,7 +14,7 @@ type TToastPrams = Omit<TToastProps, 'open' | 'setOpen'>;
 const ToastContext = createContext<(params: TToastPrams) => void>(() => null);
 
 export const ToastProvider: FC<PropsWithChildren> = ({ children }) => {
-  const [toast, setToast] = useState<TToastPrams>({});
+  const [toast, setToast] = useState<TToastPrams>({ children: '' });
   const [toastState, setToastState] = useState(false);
 
   const openToast = (params: TToastPrams) => {

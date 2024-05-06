@@ -3,14 +3,15 @@
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import * as RadixToast from '@radix-ui/react-toast';
 import clsx from 'clsx';
-import { FC, PropsWithChildren } from 'react';
+import { FC, ReactNode } from 'react';
 
 export type TToastProps = {
   type?: 'default' | 'success' | 'error';
   duration?: number;
   open: boolean;
   setOpen: (state: boolean) => void;
-} & PropsWithChildren;
+  children: ReactNode;
+};
 
 export const Toast: FC<TToastProps> = ({
   type = 'default',

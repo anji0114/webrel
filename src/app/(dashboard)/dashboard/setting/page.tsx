@@ -1,7 +1,8 @@
 import React from 'react';
+import { DashboardSettingContent } from '@/features/dashboardSetting/components/DashbaordSettingContent';
 
 const page = () => {
-  return <div>aa</div>;
+  return <DashboardSettingContent />;
 };
 
 export default page;
