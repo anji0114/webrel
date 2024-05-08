@@ -12,7 +12,7 @@ const style = {
     md: 'px-4 h-12',
     lg: 'px-4 h-14',
   },
-};
+} as const;
 
 export const Input = forwardRef<HTMLInputElement, TInputProps>(
   ({ className, size = 'md', ...restProps }, ref) => {

@@ -18,7 +18,6 @@ export const Default: Story = {};
 
 export const Large: Story = {
   args: {
-    size: 'w-14 h-14',
-    sizeNumber: 64,
+    size: 64,
   },
 };

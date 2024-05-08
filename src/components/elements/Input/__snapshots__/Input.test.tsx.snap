@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Input snapshot 1`] = `
+<input
+  className="text-base border leading-none border-gray-400 rounded-lg bg-gray-200 outline-none focus:border-gray-500 focus:bg-gray-100 px-4 h-12"
+/>
+`;

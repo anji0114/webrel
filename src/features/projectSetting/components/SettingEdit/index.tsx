@@ -1,12 +1,12 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@tanstack/react-query';
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { Button, Card, Input, Textarea } from '@/components/elements';
-import { Toast } from '@/components/elements/Toast';
 import { editProjectApi } from '@/features/projectSetting/services/editProjectApi';
 import { ProjectEditValidator } from '@/libs/validators/project';
+import { useToast } from '@/states/Toast';
 
 type TSettingEditProps = {
   projectId: string;
@@ -21,6 +21,8 @@ export const SettingEdit: FC<TSettingEditProps> = ({
   name,
   description,
 }) => {
+  const openToast = useToast();
+
   const {
     register,
     handleSubmit,
@@ -30,7 +32,6 @@ export const SettingEdit: FC<TSettingEditProps> = ({
     defaultValues: { name, description },
     resolver: zodResolver(ProjectEditValidator),
   });
-  const [visible, setVisible] = useState(false);
 
   const nameValue = watch('name');
 
@@ -39,14 +40,13 @@ export const SettingEdit: FC<TSettingEditProps> = ({
       await editProjectApi(projectId, payload);
     },
     onSuccess: () => {
-      setVisible(true);
+      openToast({ children: '保存しました', type: 'success' });
     },
     onError: () => {},
   });
 
   const onEdit = (payload: FormData) => {
     if (!nameValue) return;
-    setVisible(false);
     mutate(payload);
   };
 
@@ -103,9 +103,6 @@ export const SettingEdit: FC<TSettingEditProps> = ({
           </div>
         </div>
       </Card>
-      <Toast status='success' open={visible} setOpen={setVisible}>
-        保存しました。
-      </Toast>
     </>
   );
 };

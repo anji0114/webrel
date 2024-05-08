@@ -11,6 +11,7 @@ import { QUERY_KEYS } from '@/constants/queryKey';
 import { usePathFormatter } from '@/features/project/hooks/usePathFormatter';
 import { createPageApi } from '@/features/project/services/createPageApi';
 import { PageValidator } from '@/libs/validators/projectPage';
+import { useToast } from '@/states/Toast';
 
 type TPageCreateModalProps = Omit<TModalProps, 'isDisabled'> & {
   projectId: string;
@@ -24,6 +25,7 @@ export const PageCreateModal: FC<TPageCreateModalProps> = ({
   projectId,
 }) => {
   const queryClient = useQueryClient();
+  const openToast = useToast();
 
   const {
     register,
@@ -44,9 +46,13 @@ export const PageCreateModal: FC<TPageCreateModalProps> = ({
     },
     onSuccess: async () => {
       await queryClient.invalidateQueries([
-        QUERY_KEYS.PROJECT.FETCH_PROJECT,
+        QUERY_KEYS.PROJECT.FETCH_PROJECT_PAGES,
         projectId,
       ]);
+      openToast({
+        children: 'ページを作成しました。',
+        type: 'success',
+      });
       reset();
     },
     onError: () => {
