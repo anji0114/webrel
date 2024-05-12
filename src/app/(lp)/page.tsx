@@ -1,9 +1,7 @@
-import { CursorArrowRaysIcon } from '@heroicons/react/24/outline';
 import { NextPage } from 'next';
 import Image from 'next/image';
 import { redirect } from 'next/navigation';
 import { NonLoginHeader } from '@/app/components/Header/NonLoginHeader';
-import { Button } from '@/components/elements';
 import { getAuthSession } from '@/libs/auth';
 
 const Home: NextPage = async () => {
@@ -20,36 +18,8 @@ const Home: NextPage = async () => {
         <div className='relative w-full max-w-[1080px] mx-auto'>
           <div className='relative z-10'>
             <h2 className='text-[28px] text-gray-800 font-bold md:text-[32px]'>
-              There’s a really good catchphrase here.
-              <br />
-              Yes, the catchphrase is right here.
+              URL管理ツール Webrel
             </h2>
-            <div className='mt-10 flex gap-4'>
-              <Button
-                href='https://github.com/anji0114/webrel-supabase'
-                target='_blank'
-                color='gray'
-                size='sm'
-                icon={
-                  <Image
-                    src='/images/icon/github-black.svg'
-                    width={16}
-                    height={16}
-                    alt=''
-                  />
-                }
-              >
-                GitHub
-              </Button>
-              <Button
-                href='/register'
-                color='dark'
-                size='sm'
-                icon={<CursorArrowRaysIcon />}
-              >
-                新規登録
-              </Button>
-            </div>
           </div>
           <Image
             src='/images/logo/logo-icon.svg'
