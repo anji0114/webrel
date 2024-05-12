@@ -1,9 +1,11 @@
 import { ChevronUpDownIcon } from '@heroicons/react/24/outline';
 import clsx from 'clsx';
 import { ComponentProps, FC } from 'react';
+import { twMerge } from 'tailwind-merge';
 
 type TSelectProps = Omit<ComponentProps<'select'>, 'size' | 'className'> & {
   className?: string;
+  wrapClassName?: string;
   size?: 'sm' | 'md' | 'lg';
 };
 
@@ -17,17 +19,22 @@ const style = {
 
 export const Select: FC<TSelectProps> = ({
   className,
+  wrapClassName,
   size = 'md',
   ...restProps
 }) => {
   return (
-    <div className='relative inline-block w-[inherit]'>
+    <div
+      className={twMerge('relative inline-block w-[inherit]', wrapClassName)}
+    >
       <select
-        className={clsx(
-          'text-base border leading-none border-gray-400 rounded-lg bg-gray-200 outline-none cursor-pointer',
-          style.size[size],
-          { ['bg-gray-300 cursor-not-allowed']: restProps.disabled },
-          className,
+        className={twMerge(
+          clsx(
+            'text-base border leading-none border-gray-400 rounded-lg bg-gray-200 outline-none cursor-pointer w-full',
+            style.size[size],
+            { ['bg-gray-300 cursor-not-allowed']: restProps.disabled },
+            className,
+          ),
         )}
         {...restProps}
       ></select>

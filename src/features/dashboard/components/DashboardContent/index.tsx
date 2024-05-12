@@ -1,6 +1,6 @@
 'use client';
 import { FC, useState } from 'react';
-import { Button } from '@/components/elements';
+import { Button } from '@/components/ui/Button';
 import { DashboardProjects } from '@/features/dashboard/components/DashboardProjects';
 import { ProjectCreateModal } from '@/features/dashboard/components/ProjectCreateModal';
 import { useProjects } from '@/features/dashboard/hooks/useProjects';

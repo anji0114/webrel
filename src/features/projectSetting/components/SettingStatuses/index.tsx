@@ -1,4 +1,5 @@
-import { Button, Card } from '@/components/elements';
+import { Button } from '@/components/ui/Button';
+import { Card } from '@/components/ui/Card';
 import { SettingStatusItem } from '@/features/projectSetting/components/SettingStatuses/SettingStatusItem';
 
 export const SettingStatuses = () => {

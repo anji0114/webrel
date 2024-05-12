@@ -2,7 +2,8 @@
 import { useQuery } from '@tanstack/react-query';
 import { FC, ReactNode } from 'react';
 import { LoadingArea } from '@/components/common/LoadingArea';
-import { Card, Container } from '@/components/elements';
+import { Card } from '@/components/ui/Card';
+import { Container } from '@/components/ui/Container';
 import { QUERY_KEYS } from '@/constants/queryKey';
 import { DashboardSettingDelete } from '@/features/dashboardSetting/components/DashboardSettingDelete';
 import { DashboardSettingProfile } from '@/features/dashboardSetting/components/DashboardSettingProfile';

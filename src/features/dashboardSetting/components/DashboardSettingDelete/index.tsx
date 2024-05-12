@@ -1,5 +1,6 @@
 import { FC } from 'react';
-import { Button, Card } from '@/components/elements';
+import { Button } from '@/components/ui/Button';
+import { Card } from '@/components/ui/Card';
 
 type TTemplateProps = {
   onDelete: () => void;

@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Button } from '@/components/elements';
+import { Button } from '@/components/ui/Button';
 import { DashboardProject } from '@/features/dashboard/components/DashboardProject';
 import { DashboardProjectsLoading } from '@/features/dashboard/components/DashboardProjectsLoading';
 import { ApiError } from '@/types/api';

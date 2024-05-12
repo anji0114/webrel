@@ -1,7 +1,8 @@
 'use client';
 
 import { FC, useEffect, useState } from 'react';
-import { Button, Input } from '@/components/elements';
+import { Button } from '@/components/ui/Button';
+import { Input } from '@/components/ui/Input';
 
 type TSettingUrlItemProps = {
   url: string;

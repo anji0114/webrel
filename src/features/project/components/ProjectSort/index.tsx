@@ -2,7 +2,7 @@
 
 import { PlusIcon } from '@heroicons/react/24/outline';
 import { FC } from 'react';
-import { Button } from '@/components/elements';
+import { Button } from '@/components/ui/Button';
 import { PageCreateModal } from '@/features/project/components/PageCreateModal';
 import { useVisible } from '@/hooks/useVisible';
 

@@ -1,7 +1,8 @@
 'use client';
 
 import { FC } from 'react';
-import { Button, Card } from '@/components/elements';
+import { Button } from '@/components/ui/Button';
+import { Card } from '@/components/ui/Card';
 import { ProjectDeleteModal } from '@/features/projectSetting/components/ProjectDeleteModal';
 import { useDeleteProject } from '@/features/projectSetting/hooks/useDeleteProject';
 import { useVisible } from '@/hooks/useVisible';

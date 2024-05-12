@@ -4,7 +4,7 @@ import { XMarkIcon } from '@heroicons/react/24/outline';
 import * as Dialog from '@radix-ui/react-dialog';
 import clsx from 'clsx';
 import { FC, PropsWithChildren } from 'react';
-import { Button, TButtonProps } from '@/components/elements/Button';
+import { Button, TButtonProps } from '@/components/ui/Button';
 
 export type TModalProps = PropsWithChildren & {
   open: boolean;

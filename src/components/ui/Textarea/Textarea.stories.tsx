@@ -1,11 +1,11 @@
 import { Meta, StoryObj } from '@storybook/react';
-import { Input } from '.';
+import { Textarea } from '.';
 
 const meta = {
-  title: 'Element/Input',
-  component: Input,
+  title: 'ui/Textarea',
+  component: Textarea,
   tags: ['autodocs'],
-} satisfies Meta<typeof Input>;
+} satisfies Meta<typeof Textarea>;
 
 export default meta;
 
@@ -15,6 +15,7 @@ export const Default: Story = {};
 export const Wide: Story = {
   args: {
     className: 'w-full',
+    minRows: 6,
   },
 };
 export const Disabled: Story = {

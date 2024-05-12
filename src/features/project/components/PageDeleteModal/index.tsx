@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { FC } from 'react';
-import { Modal, TModalProps } from '@/components/elements/Modal';
+import { Modal, TModalProps } from '@/components/ui/Modal';
 import { QUERY_KEYS } from '@/constants/queryKey';
 import { deleteProjectPageApi } from '@/features/project/services/projectPagesApi';
 

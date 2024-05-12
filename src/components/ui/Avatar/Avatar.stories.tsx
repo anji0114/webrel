@@ -2,11 +2,11 @@ import { Meta, StoryObj } from '@storybook/react';
 import { Avatar } from '.';
 
 const meta = {
-  title: 'Components/Avatar',
+  title: 'ui/Avatar',
   component: Avatar,
   tags: ['autodocs'],
   args: {
-    src: '/images/dummy/image1.png',
+    src: 'https://source.unsplash.com/random',
     alt: 'ダミー画像',
   },
 } satisfies Meta<typeof Avatar>;

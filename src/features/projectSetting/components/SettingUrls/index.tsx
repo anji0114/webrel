@@ -4,7 +4,8 @@ import { PlusCircleIcon } from '@heroicons/react/24/outline';
 import { FC, useState } from 'react';
 import { createProjectUrl } from '../../services/createProjectUrl';
 import { SettingUrlItem } from './SettingUrlItem';
-import { Button, Card } from '@/components/elements';
+import { Button } from '@/components/ui/Button';
+import { Card } from '@/components/ui/Card';
 import { TProjectUrl } from '@/types/project';
 
 type TSettingUrlsProps = {

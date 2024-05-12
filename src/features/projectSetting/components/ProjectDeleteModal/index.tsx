@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import {Modal, TModalProps} from "@/components/elements/Modal"
+import {Modal, TModalProps} from "@/components/ui/Modal"
 
 
 type TProjectDeleteModalProps = Omit<TModalProps, 'okText' | 'okButtonColor'>;
