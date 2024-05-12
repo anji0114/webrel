@@ -13,17 +13,6 @@ type TAuthContentProps = {
 
 export const AuthContent: FC<TAuthContentProps> = ({ title, type }) => {
   const [googleLoading, setGoogleLoading] = useState(false);
-  const [githubLoading, setGithubLoading] = useState(false);
-
-  const authGithub = async () => {
-    setGithubLoading(true);
-    try {
-      await signIn('github');
-    } catch (error) {
-    } finally {
-      setGithubLoading(false);
-    }
-  };
 
   const authGoogle = async () => {
     setGoogleLoading(true);
@@ -49,14 +38,7 @@ export const AuthContent: FC<TAuthContentProps> = ({ title, type }) => {
       <h2 className='text-center text-3xl font-bold tracking-wide text-gray-800'>
         {title}
       </h2>
-      <div className='mt-12 space-y-4'>
-        <AuthButton
-          onClick={authGithub}
-          provider='github'
-          isLoading={githubLoading}
-        >
-          Githubで{type === 'register' ? '登録' : 'ログイン'}する
-        </AuthButton>
+      <div className='mt-12'>
         <AuthButton
           onClick={authGoogle}
           provider='google'
