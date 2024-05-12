@@ -1,5 +1,5 @@
 import { NextPage } from 'next';
-import { DashboardContent } from '@/features/dashboard/components/DashboardContent';
+import { DashboardContent } from '@/features/dashboard/top/components/DashboardContent';
 
 const page: NextPage = () => {
   return <DashboardContent />;

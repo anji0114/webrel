@@ -1,5 +1,5 @@
 import React from 'react';
-import { DashboardSettingContent } from '@/features/dashboardSetting/components/DashbaordSettingContent';
+import { DashboardSettingContent } from '@/features/dashboard/setting/components/DashboardSettingContent';
 
 const page = () => {
   return <DashboardSettingContent />;

@@ -10,7 +10,7 @@ import { useRouter } from 'next/navigation';
 import { User } from 'next-auth';
 import { signOut } from 'next-auth/react';
 import { FC } from 'react';
-import { Avatar } from '@/components/elements';
+import { Avatar } from '@/components/ui/Avatar';
 
 type THeaderNavProps = {
   user: User;

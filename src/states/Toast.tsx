@@ -7,7 +7,7 @@ import {
   useContext,
   useState,
 } from 'react';
-import { TToastProps, Toast } from '@/components/elements';
+import { TToastProps, Toast } from '@/components/ui/Toast';
 
 type TToastPrams = Omit<TToastProps, 'open' | 'setOpen'>;
 
