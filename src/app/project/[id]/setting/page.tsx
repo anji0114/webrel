@@ -1,5 +1,5 @@
 import { NextPage } from 'next';
-import { SettingContent } from '@/features/projectSetting/components/SettingContent';
+import { SettingContent } from '@/features/project/setting/components/SettingContent';
 
 interface PageProps {
   params: {

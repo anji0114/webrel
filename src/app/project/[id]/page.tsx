@@ -1,5 +1,5 @@
 import { NextPage } from 'next';
-import { ProjectMain } from '@/features/project/components/ProjectMain';
+import { ProjectMain } from '@/features/project/top/components/ProjectMain';
 
 interface PageProps {
   params: {
