@@ -1,9 +1,9 @@
 'use client';
 import { FC, useState } from 'react';
 import { Button } from '@/components/ui/Button';
-import { DashboardProjects } from '@/features/dashboard/components/DashboardProjects';
-import { ProjectCreateModal } from '@/features/dashboard/components/ProjectCreateModal';
-import { useProjects } from '@/features/dashboard/hooks/useProjects';
+import { DashboardProjects } from '@/features/dashboard/top/components/DashboardProjects';
+import { ProjectCreateModal } from '@/features/dashboard/top/components/ProjectCreateModal';
+import { useProjects } from '@/features/dashboard/top/hooks/useProjects';
 
 export const DashboardContent: FC = () => {
   const [modalOpen, setModalOpen] = useState(false);

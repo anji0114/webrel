@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { FC } from 'react';
 import { Card } from '@/components/ui/Card';
 
-import { TDashboardProject } from '@/features/dashboard/components/DashboardProjects';
+import { TDashboardProject } from '@/features/dashboard/top/components/DashboardProjects';
 import { useFormattedDate } from '@/hooks/useFormattedDate';
 
 export type TDashboardProjectProps = Omit<

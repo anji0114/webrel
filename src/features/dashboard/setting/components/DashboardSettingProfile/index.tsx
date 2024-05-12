@@ -10,8 +10,8 @@ import { Avatar } from '@/components/ui/Avatar';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
 import { QUERY_KEYS } from '@/constants/queryKey';
-import { updateProfileApi } from '@/features/dashboardSetting/services/updateProfileApi';
-import { profileValidator } from '@/features/dashboardSetting/validators/profile';
+import { updateProfileApi } from '@/features/dashboard/setting/services/updateProfileApi';
+import { profileValidator } from '@/features/dashboard/setting/validators/profile';
 import { useToast } from '@/states/Toast';
 import { TProfile } from '@/types/profile';
 

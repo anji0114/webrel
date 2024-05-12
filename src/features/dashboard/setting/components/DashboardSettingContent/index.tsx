@@ -5,8 +5,8 @@ import { LoadingArea } from '@/components/common/LoadingArea';
 import { Card } from '@/components/ui/Card';
 import { Container } from '@/components/ui/Container';
 import { QUERY_KEYS } from '@/constants/queryKey';
-import { DashboardSettingDelete } from '@/features/dashboardSetting/components/DashboardSettingDelete';
-import { DashboardSettingProfile } from '@/features/dashboardSetting/components/DashboardSettingProfile';
+import { DashboardSettingDelete } from '@/features/dashboard/setting/components/DashboardSettingDelete';
+import { DashboardSettingProfile } from '@/features/dashboard/setting/components/DashboardSettingProfile';
 import { profileApi } from '@/services/profileApi';
 
 export const DashboardSettingContent = () => {
