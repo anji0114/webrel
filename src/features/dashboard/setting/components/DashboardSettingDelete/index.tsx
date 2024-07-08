@@ -6,6 +6,11 @@ type TTemplateProps = {
   onDelete: () => void;
 };
 
+export const DashboardSettingDelete: FC = () => {
+  const onDelete = () => {};
+  return <DashboardSettingDeleteTemplate onDelete={onDelete} />;
+};
+
 export const DashboardSettingDeleteTemplate: FC<TTemplateProps> = () => {
   return (
     <Card className='shadow-none border-danger-light bg-danger bg-opacity-5'>
@@ -22,9 +27,4 @@ export const DashboardSettingDeleteTemplate: FC<TTemplateProps> = () => {
       </div>
     </Card>
   );
-};
-
-export const DashboardSettingDelete: FC = () => {
-  const onDelete = () => {};
-  return <DashboardSettingDeleteTemplate onDelete={onDelete} />;
 };
